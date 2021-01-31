@@ -1,20 +1,37 @@
 # Welcome to Duoviae
 
-A trivia game with a focus on true or false choices.
+A trivia game with a focus on true or false choices. The name is from Latin "dou" (two) and "viae" (roads), since the application is going to focus on true or false.
 
 To use the game please check out either `$ yarn android` or `$ yarn ios` after installing the project until it is published on www.expo.io
 
 
 ## Contribution and Development
+How to contribute to this project or develop your own from it.
 
-### Design
+## Design (Technology and Visuals)
 
-#### Connections
+### Visuals
+Using an Atomic Design approach and proven UI Component Library with UI Kitten.
 
-`app/connections`
+### Extnernal Connections
+
+Location `app/connections`
 
 Interfaces for connecting to external services and/or systems (e.g. HTTP APIs and Reactotron)
 
+### Localization and Translation
+
+### Navigation
+
+### State Machine
+
+### Components
+
+### Screens
+
+### Theme
+
+### Testing and Code Checks
 
 ## How It Was Setup
 
@@ -59,6 +76,23 @@ expo install react-native-reanimated react-native-gesture-handler react-native-s
 ````
 
 Screens will leverage the internals of [https://reactnavigation.org/docs/handling-safe-area/](https://reactnavigation.org/docs/handling-safe-area/)
+
+### Localization
+
+Used [Expo Localization](https://docs.expo.io/versions/latest/sdk/localization/)
+
+```
+$ expo install expo-localization
+```
+
+However, to get more feature rich, I decided to go with [React-i18Next](https://react.i18next.com/)
+
+### Testing
+
+```
+$  yarn add -D jest @types/jest @babel/preset-typescript babel-jest @babel/core @babel/preset-env
+```
+
 
 ## Citations and Credit
 The initial direction and requirements for the application is per G2i. [The instructions and requirements are found at their Gist location](https://gist.github.com/severnsc/e09f4f8742b7dd91af9c422d6f210a57)
