@@ -1,0 +1,6 @@
+{
+  "title": "Welcome to the Trivia Challenge",
+  "boolean": "You will be presented with {{numberOfQuestions}} True or False questions",
+  "goal": "Can you score 100%?",
+  "begin": "Begin"
+}
