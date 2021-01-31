@@ -1,6 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ExternalNavigator } from './ExternalNavigator'
+import { Questions } from '../screens'
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -15,6 +16,7 @@ export const RootNavigator = () => {
       screenOptions={rootStackScreenOptions}
     >
       <Screen name='ExternalStack' component={ExternalNavigator} />
+      <Screen name='Questions' component={Questions} />
     </Navigator>
   )
 }
