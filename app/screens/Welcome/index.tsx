@@ -5,14 +5,22 @@ import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
 import { riverBackground } from '../../../assets/images'
+import { useDispatch } from 'react-redux'
+import { Types as TriviaActionTypes } from '../../state/modules/trivia'
 
-export default function Dashboard (): ReactElement {
+function Dashboard (): ReactElement {
   const navigation = useNavigation()
   const { t } = useTranslation('welcomeScreen')
   const textTitle = t('title')
   const textIntro = t('boolean', { numberOfQuestions: 10 })
   const textBegin = t('begin')
   const textGoal = t('goal')
+
+  const dispatch = useDispatch()
+  const beginQuiz = async () => {
+    dispatch({ type: TriviaActionTypes.GET_DATA })
+    navigation.navigate('Questions')
+  }
   return (
     <Screen preset='splash' background={riverBackground}>
       <Text category='h1'>{textTitle}</Text>
@@ -20,7 +28,9 @@ export default function Dashboard (): ReactElement {
         <Text category='h3' style={styles.IntroText}>{textIntro}</Text>
         <Text>{textGoal}</Text>
       </Container>
-      <Button size='giant' onPress={() => navigation.navigate('Questions')}>{textBegin}</Button>
+      <Button size='giant' onPress={beginQuiz}>{textBegin}</Button>
     </Screen>
   )
 }
+
+export default Dashboard
