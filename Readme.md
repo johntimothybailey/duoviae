@@ -32,6 +32,13 @@ Interfaces for connecting to external services and/or systems (e.g. HTTP APIs an
 ### Theme
 
 ### Testing and Code Checks
+Testing is done by the standard Jest and supporting TypeScript
+
+Style checks are done via ESLint using StandardJS Configurations with as little alterations as possible.
+
+In terms of Render testing (dom-like testing)
+- **Enzyme** for Component isolation testing
+- **[React Testing Library](https://callstack.github.io/react-native-testing-library)** for Blackbox / e2e testing
 
 ## How It Was Setup
 

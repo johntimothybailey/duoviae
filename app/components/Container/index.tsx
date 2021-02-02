@@ -68,7 +68,17 @@ export default function Container (props: ContainerProps): ReactElement {
       additionalStyles.marginVertical = spacing.SMALLER
       additionalStyles.width = '100%'
     }
-    return React.Children.map(props.children as any, (child: ReactElement) => {
+    if (R.isNil(props.children)) {
+      return null
+    }
+    let children = props.children
+    if (!Array.isArray(props.children)) {
+      children = [props.children]
+    }
+    const validChildren = R.filter((child: any) => {
+      return child && React.isValidElement(child)
+    }, children as any[])
+    return React.Children.map(validChildren as ReactElement[], (child: ReactElement) => {
       return (React.cloneElement(child, {
         ...child.props,
         style: {
