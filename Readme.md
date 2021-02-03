@@ -30,8 +30,16 @@ Interfaces for connecting to external services and/or systems (e.g. HTTP APIs an
 ### Screens
 
 ### Theme
+Where we'll setup and configure overrides and customizations for the theme provided by our UI Library (i.e. UI Kitten)
 
 ### Testing and Code Checks
+Testing is done by the standard Jest and supporting TypeScript
+
+Style checks are done via ESLint using StandardJS Configurations with as little alterations as possible.
+
+In terms of Render testing (dom-like testing)
+- **Enzyme** for Component isolation testing
+- **[React Testing Library](https://callstack.github.io/react-native-testing-library)** for Blackbox / e2e testing
 
 ## How It Was Setup
 
@@ -63,7 +71,7 @@ $ yarn lint:fix
 
 ### Directories
 ```
-mkdir app app/screens app/navigation app/state app/theme app/i18n app/connections app/components
+mkdir app app/screens app/navigation app/state app/theme app/i18n app/services app/components app/translations
 ```
 
 Please see the Design section above for details

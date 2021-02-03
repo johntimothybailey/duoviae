@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { ViewStyle, View } from 'react-native'
 import { ContainerProps } from './props'
-import { spacing } from '../../theme'
+import { Spacing } from '../../theme'
 import R from 'ramda'
 
 export const makeStyles = (props: ContainerProps): ViewStyle => {
@@ -60,20 +60,37 @@ export const makeStyles = (props: ContainerProps): ViewStyle => {
  */
 export default function Container (props: ContainerProps): ReactElement {
   const renderChildren = () => {
-    const additionalStyles: ViewStyle = {}
+    const childStyles: ViewStyle = {}
     if (props['fit-items']) {
-      additionalStyles.flex = 1
+      childStyles.flex = 1
     }
     if (props.preset === 'form') {
-      additionalStyles.marginVertical = spacing.SMALLER
-      additionalStyles.width = '100%'
+      childStyles.marginVertical = Spacing.SMALLER
+      childStyles.width = '100%'
     }
-    return React.Children.map(props.children as any, (child: ReactElement) => {
+    if (R.is(Number, props.space)) {
+      if (props.row) {
+        childStyles.paddingHorizontal = props.space
+      } else {
+        childStyles.paddingVertical = props.space
+      }
+    }
+    if (R.isNil(props.children)) {
+      return null
+    }
+    let children = props.children
+    if (!Array.isArray(props.children)) {
+      children = [props.children]
+    }
+    const validChildren = R.filter((child: any) => {
+      return child && React.isValidElement(child)
+    }, children as any[])
+    return React.Children.map(validChildren as ReactElement[], (child: ReactElement) => {
       return (React.cloneElement(child, {
         ...child.props,
         style: {
           ...child.props.style,
-          ...additionalStyles
+          ...childStyles
         }
       }))
     })

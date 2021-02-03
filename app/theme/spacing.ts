@@ -1,4 +1,4 @@
-export enum spacing {
+export enum Spacing {
   NONE = 0,
   TINY = 4,
   SMALLER = 8,
@@ -10,4 +10,4 @@ export enum spacing {
   MASSIVE = 64
 }
 
-export default spacing
+export default Spacing

@@ -7,4 +7,7 @@ export interface ScreenProps {
   children: React.ReactNode | React.ReactNode[]
   preset?: 'splash' | 'regular'
   background?: any
+  withAppBar?: boolean
+  title?: string
+  subtitle?: string
 }

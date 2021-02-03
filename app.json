@@ -16,7 +16,13 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "locales": {
+      "en": "./app/languages/english.json"
+    },
     "ios": {
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true
+      },
       "supportsTablet": true
     },
     "android": {

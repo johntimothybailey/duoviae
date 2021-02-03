@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Welcome as WelcomeScreen } from '../screens'
 const { Navigator, Screen } = createStackNavigator()
 
-export function ExternalNavigator () {
+export function PreNavigator () {
   return (
     <Navigator
       screenOptions={{
@@ -16,4 +16,4 @@ export function ExternalNavigator () {
   )
 }
 
-export default ExternalNavigator
+export default PreNavigator

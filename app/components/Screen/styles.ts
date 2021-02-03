@@ -1,9 +1,9 @@
 import { ViewStyle, StyleSheet } from 'react-native'
-import { spacing } from '../../theme'
+import { Spacing } from '../../theme'
 
 const SplashBase: ViewStyle = {
-  paddingHorizontal: spacing.LARGER,
-  paddingVertical: spacing.SMALL
+  paddingHorizontal: Spacing.LARGER,
+  paddingVertical: Spacing.SMALL
 }
 
 const BackgroundImageFull: ViewStyle = {

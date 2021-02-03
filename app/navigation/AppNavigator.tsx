@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { ExternalNavigator } from './ExternalNavigator'
-import { Questions } from '../screens'
+import { PreNavigator } from './PreNavigator'
+import TriviaNavigator from './TriviaNavigator'
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -10,13 +10,13 @@ const rootStackScreenOptions = {
   gestureEnabled: true
 }
 
-export const RootNavigator = () => {
+export const AppNavigator = () => {
   return (
     <Navigator
       screenOptions={rootStackScreenOptions}
     >
-      <Screen name='ExternalStack' component={ExternalNavigator} />
-      <Screen name='Questions' component={Questions} />
+      <Screen name='ExternalStack' component={PreNavigator} />
+      <Screen name='TriviaStack' component={TriviaNavigator} />
     </Navigator>
   )
 }
