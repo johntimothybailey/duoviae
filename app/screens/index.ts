@@ -1,5 +1,5 @@
 import Welcome from './Welcome'
-import Trivia from './Trivia'
+import Trivia from './Questions'
 export {
   Welcome,
   Trivia

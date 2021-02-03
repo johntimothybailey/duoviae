@@ -3,7 +3,7 @@ import React from 'react'
 import * as eva from '@eva-design/eva'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { RootNavigator } from './app/navigation/RootNavigator'
+import { AppNavigator } from './app/navigation/AppNavigator'
 import { ApplicationProvider as ThemeProvider, IconRegistry } from '@ui-kitten/components'
 import { StateProvider } from './app/state'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
@@ -16,7 +16,7 @@ export default function App () {
       <StateProvider>
         <ThemeProvider {...eva} theme={eva.dark}>
           <NavigationContainer>
-            <RootNavigator />
+            <AppNavigator />
           </NavigationContainer>
         </ThemeProvider>
       </StateProvider>

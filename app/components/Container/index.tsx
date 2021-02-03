@@ -60,13 +60,20 @@ export const makeStyles = (props: ContainerProps): ViewStyle => {
  */
 export default function Container (props: ContainerProps): ReactElement {
   const renderChildren = () => {
-    const additionalStyles: ViewStyle = {}
+    const childStyles: ViewStyle = {}
     if (props['fit-items']) {
-      additionalStyles.flex = 1
+      childStyles.flex = 1
     }
     if (props.preset === 'form') {
-      additionalStyles.marginVertical = Spacing.SMALLER
-      additionalStyles.width = '100%'
+      childStyles.marginVertical = Spacing.SMALLER
+      childStyles.width = '100%'
+    }
+    if (R.is(Number, props.space)) {
+      if (props.row) {
+        childStyles.paddingHorizontal = props.space
+      } else {
+        childStyles.paddingVertical = props.space
+      }
     }
     if (R.isNil(props.children)) {
       return null
@@ -83,7 +90,7 @@ export default function Container (props: ContainerProps): ReactElement {
         ...child.props,
         style: {
           ...child.props.style,
-          ...additionalStyles
+          ...childStyles
         }
       }))
     })

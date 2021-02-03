@@ -1,6 +1,5 @@
 import { Api } from './api'
 import MockAdapter from 'axios-mock-adapter'
-import { Question } from '../../../state/modules/trivia/Models'
 
 describe('Services > Trivia API', () => {
   describe('getData()', () => {

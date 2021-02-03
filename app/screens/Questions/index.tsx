@@ -19,7 +19,7 @@ export default function Trivia (): ReactElement {
     dispatch({ type: ActionTypes.CREATE_ANSWER, question, selection })
   }
   return (
-    <Screen background={questionsBackground}>
+    <Screen background={questionsBackground} preset='splash' withAppBar title='Questions'>
       {
         isLoading
           ? <Spinner size='giant' />

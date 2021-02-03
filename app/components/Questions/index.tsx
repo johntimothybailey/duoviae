@@ -1,11 +1,14 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import V from 'voca'
 import R from 'ramda'
 import Container from '../Container'
-import { Button, Layout, Radio, RadioGroup, Text } from '@ui-kitten/components'
+import { Button, Card, Layout, Radio, RadioGroup, Text } from '@ui-kitten/components'
+import { Bar as ProgressBar } from 'react-native-progress'
 import { QuestionProps, QuestionsProps } from './props'
 import { Question as QuestionModel } from '../../state/modules/trivia/Models'
-import { QuestionStyles } from './styles'
+import { ProgressStyles, QuestionStyles } from './styles'
+import Spacing from '../../theme/spacing'
+import { View } from 'react-native'
 
 // ACTIONS
 /**
@@ -19,15 +22,28 @@ const nextQuestion = (setStep: any, setItem: any, item: QuestionModel, items: Qu
 }
 
 // COMPONENTS
+const Category = (props: QuestionProps): ReactElement => {
+  return (
+    <Text category='h5' style={QuestionStyles.category}>{props.item.category}</Text>
+  )
+}
 
 const Question = (props: QuestionProps): ReactElement => {
   const [selected, setSelect] = useState(undefined)
+  useEffect(() => {
+    setSelect(undefined)
+  }, [props.item])
   return (
-    <Container outline width='100%' style={{ flex: 0 }}>
+    <Card
+      style={{ width: '100%' }}
+      header={() => <Category {...props} />}
+      footer={() => <Button onPress={() => props.onSelect()}>Continue</Button>}
+    >
       <Layout level='4' style={{ ...QuestionStyles.question, width: '100%' }}>
         <Text category='p1' style={QuestionStyles.question}>{V.unescapeHtml(props.item.question)}</Text>
       </Layout>
       <RadioGroup
+        style={QuestionStyles.answers}
         selectedIndex={selected}
         onChange={setSelect}
       >
@@ -35,19 +51,24 @@ const Question = (props: QuestionProps): ReactElement => {
           return (<Radio key={index}>{value}</Radio>)
         })}
       </RadioGroup>
-      <Button onPress={() => props.onSelect()}>Continue</Button>
-    </Container>
+    </Card>
   )
 }
 
+const Progress = (props: QuestionsProps) => (
+  <View style={ProgressStyles.container}>
+    <Text style={ProgressStyles.text}>{props.step} / {props.list.length}</Text>
+    <ProgressBar progress={(props.step ?? 0) / props.list.length} width={200} />
+  </View>
+)
+
 const Questions = (props: QuestionsProps): ReactElement => {
   const items: QuestionModel[] = props.list
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(0)
   const [question, setQuestion] = useState(items[0])
 
   return (
-    <Container width='100%'>
-      <Text>{step}/{items.length}</Text>
+    <Container width='100%' space={Spacing.LARGE}>
       {question
         ? (<Question
             item={question}
@@ -58,6 +79,7 @@ const Questions = (props: QuestionsProps): ReactElement => {
             }}
            />)
         : <Text>No Question available</Text>}
+      <Progress {...props} step={step} />
     </Container>
   )
 }

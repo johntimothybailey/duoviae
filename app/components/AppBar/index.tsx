@@ -6,9 +6,9 @@ import {
   TopNavigationActionElement
 } from '@ui-kitten/components'
 import { BackIcon, MoreVerticalIcon } from '../Icons'
-import { Props } from './props'
+import { HeaderProps } from './props'
 
-export const Header = (props: Props): TopNavigationActionElement => {
+export const Header = (props: HeaderProps): TopNavigationActionElement => {
   const { menu, backIcon, menuIcon, onBackPress, ...topNavigationProps } = props
   const [menuVisible, setMenuVisible] = React.useState(false)
 
@@ -22,7 +22,7 @@ export const Header = (props: Props): TopNavigationActionElement => {
 
   const renderMenuAnchorAction = (): TopNavigationActionElement => (
     <TopNavigationAction
-      icon={props.menuIcon || MoreVerticalIcon}
+      icon={props.menuIcon ?? MoreVerticalIcon}
       onPress={onMenuActionPress}
     />
   )
@@ -41,7 +41,7 @@ export const Header = (props: Props): TopNavigationActionElement => {
 
   const renderBackAction = (): TopNavigationActionElement => (
     <TopNavigationAction
-      icon={props.backIcon || BackIcon}
+      icon={props.backIcon ?? BackIcon}
       onPress={onBackPress}
     />
   )

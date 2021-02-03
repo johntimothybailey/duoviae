@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { ViewStyle } from 'react-native'
+import Spacing from '../../theme/spacing'
 
 export interface ContainerProps {
   children?: React.ReactNode | React.ReactNode[]
@@ -20,7 +21,7 @@ export interface ContainerProps {
 
   reverse?: boolean
 
-  space?: 'evenly' | 'between' | 'around'
+  space?: 'evenly' | 'between' | 'around' | Spacing
 
   backgroundColor?: boolean
 
