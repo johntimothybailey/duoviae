@@ -37,7 +37,7 @@ const Question = (props: QuestionProps): ReactElement => {
     <Card
       style={{ width: '100%' }}
       header={() => <Category {...props} />}
-      footer={() => <Button onPress={() => props.onSelect()}>Continue</Button>}
+      footer={() => <Button disabled={selected === undefined} onPress={() => props.onSelect()}>Continue</Button>}
     >
       <Layout level='4' style={{ ...QuestionStyles.question, width: '100%' }}>
         <Text category='p1' style={QuestionStyles.question}>{V.unescapeHtml(props.item.question)}</Text>
