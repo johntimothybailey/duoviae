@@ -11,7 +11,7 @@ import { makeReducers } from './modules'
 const resettable = resettableReducer('RESET')
 const createReducers = () => {
   return {
-    ...makeReducers({ resettable })
+    ...makeReducers(resettable)
   }
 }
 

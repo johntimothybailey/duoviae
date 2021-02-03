@@ -1,4 +1,3 @@
-import camelCase from 'voca/camel_case'
 import reduce from 'lodash/reduce'
 /**
  * To Register a SagaSauce powered Redux Module
@@ -7,16 +6,24 @@ import reduce from 'lodash/reduce'
  */
 // -------------------- REGISTER MODULES -------------------------------- //
 // 1. Import Modules
-import Trivia from './trivia'
+import Trivia, { State as TriviaState } from './trivia'
+import Answers, { State as AnswersState } from './answers'
 import { Api } from '../../services/api'
+import { Dispatch } from 'react'
 
 // 2. Register Modules
-export const RegisteredModules = { Trivia }
+export const RegisteredModules = { Trivia, Answers }
 // add imported module HERE ^
+
+// 3. For TypeScript compliance add Module State structure here
+export interface State {
+  Trivia: TriviaState
+  Answers: AnswersState
+}
 
 // ------------------------------------------------------------- //
 // ---------------------- MAGIC -------------------------------- //
-export const makeDispatchers = ({ dispatch }): any => {
+export const makeDispatchers = (dispatch: Dispatch<any>): any => {
   return reduce(
     RegisteredModules,
     (acc, value) => {
@@ -28,7 +35,7 @@ export const makeDispatchers = ({ dispatch }): any => {
     {}
   )
 }
-export const makeReducers = ({ resettable }): any => {
+export const makeReducers = (resettable: any): any => {
   return reduce(
     RegisteredModules,
     (acc, value, key) => {

@@ -3,7 +3,7 @@ import API_CONFIG from '../config'
 import * as Types from '../types'
 import { ApiConfig, HydrogenAPI, SagaSauceAPI } from '../../IHydrogenAPI'
 
-const DATA: Types.Entity[] = [{
+export const DATA: Types.Entity[] = [{
   category: 'Entertainment: Video Games',
   type: 'boolean',
   difficulty: 'hard',

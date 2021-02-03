@@ -1,10 +1,26 @@
 import { ApiResponse, ApisauceInstance, create } from 'apisauce'
 import API_CONFIG from './config'
-import * as Types from './types'
-import { Category, GetQueryParams } from './types'
+import { Entity, GetQueryParams } from './types'
 import { ApiConfig, HydrogenAPI, SagaSauceAPI } from '../IHydrogenAPI'
+import { Question } from '../../../state/modules/trivia/Models'
 
 const DATA_KEY = 'results'
+
+/**
+ * SagaSauce currently does not support an easy way to make this mapping
+ * @param value
+ */
+const mapEntity = (value: Entity): Question => {
+  return {
+    category: value.category,
+    type: value.type,
+    difficulty: value.difficulty,
+    question: value.question,
+    possibleAnswers: [value.correct_answer].concat(value.incorrect_answers),
+    correctAnswer: value.correct_answer,
+    incorrectAnswers: value.incorrect_answers
+  }
+}
 
 /**
  * Manages all requests to the API.
@@ -59,15 +75,14 @@ export class Api implements SagaSauceAPI, HydrogenAPI {
     const response: ApiResponse<any> = await this.apisauce.get('/', data && { ...data })
     // the typical ways to die when calling an api
     if (!response.ok) {
-      return response.problem
+      return { ok: false, kind: 'bad-data', error: response.problem }
     }
-
     // transform the data into the format we are expecting
     try {
-      const result: Types.Entity[] = response.data[DATA_KEY]
+      const result: Question[] = response.data[DATA_KEY].map(mapEntity)
       return { ok: true, kind: 'ok', data: { data: result } }
-    } catch {
-      return { ok: false, kind: 'bad-data' }
+    } catch (error) {
+      return { ok: false, kind: 'bad-data', error }
     }
   }
 
