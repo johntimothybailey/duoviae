@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next'
 
 const resources = {
   en: {
+    common: require('./common/english.json'),
     welcomeScreen: require('./welcomeScreen/english.json')
   }
 }

@@ -26,11 +26,13 @@ const SplashScreen = (props: ScreenProps): ReactElement => {
 
 const SafeViewScreen = (props: ScreenProps): ReactElement => {
   const theme = useTheme()
+  const style = { flex: 1, ...styles.SplashBase }
+  if (!props.background) {
+    style.backgroundColor = theme['background-basic-color-1']
+  }
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme['background-basic-color-1'] }}>
-      <Container>
-        {props.children}
-      </Container>
+    <SafeAreaView style={style}>
+      {props.children}
     </SafeAreaView>
   )
 }

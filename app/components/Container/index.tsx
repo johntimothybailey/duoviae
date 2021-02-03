@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { ViewStyle, View } from 'react-native'
 import { ContainerProps } from './props'
-import { spacing } from '../../theme'
+import { Spacing } from '../../theme'
 import R from 'ramda'
 
 export const makeStyles = (props: ContainerProps): ViewStyle => {
@@ -65,7 +65,7 @@ export default function Container (props: ContainerProps): ReactElement {
       additionalStyles.flex = 1
     }
     if (props.preset === 'form') {
-      additionalStyles.marginVertical = spacing.SMALLER
+      additionalStyles.marginVertical = Spacing.SMALLER
       additionalStyles.width = '100%'
     }
     if (R.isNil(props.children)) {

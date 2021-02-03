@@ -1,6 +1,6 @@
 import Welcome from './Welcome'
-import Questions from './Questions'
+import Trivia from './Trivia'
 export {
   Welcome,
-  Questions
+  Trivia
 }
