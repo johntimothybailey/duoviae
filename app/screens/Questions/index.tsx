@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../state'
 import { ActionTypes } from '../../state/modules/answers'
 import { Question } from '../../state/modules/trivia/Models'
+import { useNavigation } from '@react-navigation/native'
 import { questionsBackground } from '../../../assets/images'
 
 export default function Trivia (): ReactElement {
   const dispatch = useDispatch()
+  const navigation = useNavigation()
   const list = useSelector((state: RootState) => {
     return state.Trivia.data
   })
@@ -18,12 +20,15 @@ export default function Trivia (): ReactElement {
   const onSaveAnswer = (question: Question, selection: string) => {
     dispatch({ type: ActionTypes.CREATE_ANSWER, question, selection })
   }
+  const onComplete = () => {
+    navigation.navigate('TriviaStack', { screen: 'Results' })
+  }
   return (
-    <Screen background={questionsBackground} preset='splash' withAppBar title='Questions'>
+    <Screen background={questionsBackground} preset='splash' withAppBar withBack title='Questions'>
       {
         isLoading
           ? <Spinner size='giant' />
-          : <Questions list={list} saveAnswer={onSaveAnswer} />
+          : <Questions list={list} onSaveAnswer={onSaveAnswer} onComplete={onComplete} />
       }
     </Screen>
   )

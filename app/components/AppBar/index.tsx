@@ -6,9 +6,14 @@ import {
   TopNavigationActionElement
 } from '@ui-kitten/components'
 import { BackIcon, MoreVerticalIcon } from '../Icons'
-import { HeaderProps } from './props'
+import { AppBarProps } from './props'
 
-export const Header = (props: HeaderProps): TopNavigationActionElement => {
+/**
+ * @cite
+ * @param props
+ * @constructor
+ */
+export const AppBar = (props: AppBarProps): TopNavigationActionElement => {
   const { menu, backIcon, menuIcon, onBackPress, ...topNavigationProps } = props
   const [menuVisible, setMenuVisible] = React.useState(false)
 
@@ -56,4 +61,4 @@ export const Header = (props: HeaderProps): TopNavigationActionElement => {
   )
 }
 
-export default Header
+export default AppBar

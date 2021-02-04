@@ -6,6 +6,7 @@ import * as React from 'react'
 export interface ScreenProps {
   children: React.ReactNode | React.ReactNode[]
   preset?: 'splash' | 'regular'
+  withBack?: boolean // Really, we're talking about this becoming a setting via Navigator or preset
   background?: any
   withAppBar?: boolean
   title?: string
