@@ -22,7 +22,8 @@ const INITIAL_STATE = Immutable({
 
 /** ------------ Actions: Types and Creators --------- */
 const Actions = createActions({
-  createAnswer: ['question', 'selection']
+  createAnswer: ['question', 'selection'],
+  clearCurrent: null
 })
 export const ActionTypes = Actions.Types
 const Creators = Actions.Creators
@@ -31,6 +32,9 @@ const createDispatchers = (dispatch: Dispatch<any>) => {
   return {
     createAnswer: (question: Question, selection: string) => {
       dispatch(Creators.createAnswer(question, selection))
+    },
+    clearCurrent: () => {
+      dispatch(Creators.clearCurrent())
     }
   }
 }
@@ -57,8 +61,16 @@ export const reducerCreateAnswer = (state: any = INITIAL_STATE, action: CreateAc
     current: [...state.current, answer]
   }
 }
+
+export const reducerClearCurrent = (state: any = INITIAL_STATE) => {
+  return {
+    ...state,
+    current: []
+  }
+}
 const Reducers = createReducer(INITIAL_STATE, {
-  [ActionTypes.CREATE_ANSWER]: reducerCreateAnswer
+  [ActionTypes.CREATE_ANSWER]: reducerCreateAnswer,
+  [ActionTypes.CLEAR_CURRENT]: reducerClearCurrent
 })
 
 export default {

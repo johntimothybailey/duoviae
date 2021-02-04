@@ -1,9 +1,17 @@
-import { reducerCreateAnswer, State } from './index'
+import { reducerClearCurrent, reducerCreateAnswer, State } from './index'
 import { Question } from '../trivia/Models'
 import { Answer } from './Models'
+import { IsCorrectAnswer, IsIncorrectAnswer } from '../../../../test/fixtures/AnswersStateMachine'
 
 describe('Answers State Module > Reducers', () => {
-  describe('reducerCreateAnswer', () => {
+  describe('Clear Current', () => {
+    it('sets "current" state to empty array', () => {
+      const state: State = { current: [IsCorrectAnswer, IsIncorrectAnswer] }
+      const result = reducerClearCurrent(state)
+      expect(result.current).toHaveLength(0)
+    })
+  })
+  describe('CreateAnswer', () => {
     it('adds the state list of answers', () => {
       const startState: State = { current: [] }
       const question: Question = {
