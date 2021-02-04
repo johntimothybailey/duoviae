@@ -1,23 +1,22 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react-native'
-import * as eva from '@eva-design/eva'
 import Question from './Question'
 import { FalseBoolean } from '../../../test/fixtures/QuestionsStateMachine'
-import { ApplicationProvider } from '@ui-kitten/components'
+import BootComponent from '../../../test/BootComponent'
 
 describe('Question Component', () => {
   describe('onSelect', () => {
     it('passes the selected option', () => {
       const onSelect = jest.fn()
       const { getByText } = render(
-        <ApplicationProvider mapping={eva.mapping} theme={eva.light}>
+        <BootComponent>
           <Question
             item={FalseBoolean}
             onSelect={onSelect}
             index={0}
             continueLabel='Continue'
           />
-        </ApplicationProvider>
+        </BootComponent>
       )
       const falseSelection = getByText('False')
       fireEvent.press(falseSelection)
