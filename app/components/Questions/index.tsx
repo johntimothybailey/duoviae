@@ -1,5 +1,4 @@
-import React, { ReactElement, useState } from 'react'
-import R from 'ramda'
+import React, { ReactElement, useEffect } from 'react'
 import Container from '../Container'
 import { Text } from '@ui-kitten/components'
 import { QuestionsProps } from './props'
@@ -8,38 +7,25 @@ import Spacing from '../../theme/spacing'
 import Question from './Question'
 import Progress from './Progress'
 
-/**
- * TODO: Move to State Machine
- */
-export const nextQuestion = (setStep: any, setItem: any, item: QuestionModel, items: QuestionModel[], onComplete: any) => {
-  const currentStep = R.findIndex(R.propEq('question', item.question), items)
-  const nextStep = currentStep + 1
-  if (nextStep < items.length) {
-    setStep(nextStep)
-    setItem(items[nextStep])
-  } else {
-    onComplete()
-  }
-}
-
 const Questions = (props: QuestionsProps): ReactElement => {
-  const items: QuestionModel[] = props.list
-  const [step, setStep] = useState(0)
-  const [question, setQuestion] = useState(items[0])
+  let question: QuestionModel | undefined = props.list[props.step]
+  useEffect(() => {
+    question = props.list[props.step]
+  }, [props.list, props.step])
   return (
     <Container width='100%' space={Spacing.LARGE}>
       {question
         ? (<Question
             item={question}
-            index={step}
+            index={props.step}
             onSelect={(selection: string) => {
               props.onSaveAnswer(question, selection)
-              nextQuestion(setStep, setQuestion, question, items, props.onComplete)
+              props.onNext()
             }}
             continueLabel='Continue'
            />)
         : <Text>No question available</Text>}
-      <Progress {...props} step={step} />
+      <Progress {...props} step={props.step} />
     </Container>
   )
 }
