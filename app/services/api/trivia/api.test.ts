@@ -1,7 +1,32 @@
-import { Api } from './api'
+import { Api, mapEntity } from './api'
 import MockAdapter from 'axios-mock-adapter'
 
 describe('Services > Trivia API', () => {
+  describe('mapEntity()', () => {
+    it('orders boolean answers by False then True', () => {
+      let result = mapEntity({
+        category: 'Science: Mathematics',
+        type: 'boolean',
+        difficulty: 'hard',
+        question: 'The binary number &quot;101001101&quot; is equivalent to the Decimal number &quot;334&quot;',
+        correct_answer: 'False',
+        incorrect_answers: ['True']
+      })
+      expect(result).toHaveProperty('possibleAnswers', ['False', 'True'])
+
+      result = mapEntity({
+        category: 'History',
+        type: 'boolean',
+        difficulty: 'hard',
+        question: 'Joseph Stalin&#039;s real name was Ioseb Bessarionis dze Dzugashvili.',
+        correct_answer: 'True',
+        incorrect_answers: [
+          'False'
+        ]
+      })
+      expect(result).toHaveProperty('possibleAnswers', ['False', 'True'])
+    })
+  })
   describe('getData()', () => {
     it('mutates response to State Model Question', async () => {
       const api = new Api()
