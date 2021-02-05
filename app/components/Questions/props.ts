@@ -5,12 +5,14 @@ import { Question as QuestionModel } from '../../state/modules/trivia/Models'
 
 export interface QuestionsProps {
   list: QuestionModel[]
-  saveAnswer: any
-  step?: number
+  onSaveAnswer: (question: QuestionModel | undefined, selected: string) => void
+  step: number
+  onNext: () => void
 }
 
 export interface QuestionProps {
   item: QuestionModel
   index: number
-  onSelect: any
+  onSelect: () => void
+  continueLabel: string
 }

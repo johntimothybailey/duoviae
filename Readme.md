@@ -4,9 +4,14 @@ A trivia game with a focus on true or false choices. The name is from Latin "dou
 
 To use the game please check out either `$ yarn android` or `$ yarn ios` after installing the project until it is published on www.expo.io
 
+The following is to help with two types of contributors "nerdy" Users and other Developers / Software Enginers
+
+## Feature or Bug
+https://github.com/johntimothybailey/duoviae/issues
 
 ## Contribution and Development
 How to contribute to this project or develop your own from it.
+
 
 ## Design (Technology and Visuals)
 
@@ -26,8 +31,21 @@ Interfaces for connecting to external services and/or systems (e.g. HTTP APIs an
 ### State Machine
 
 ### Components
+Should not rely on from State Machine Proviers and other such larger configurations Providers. Basically, focus these on input and output.
+
+Reusable [Molecules](https://atomicdesign.bradfrost.com/chapter-2/#molecules) and [Organisms](https://atomicdesign.bradfrost.com/chapter-2/#organisms) that define the following at minimum:
+
+- `index.tsx` the defining "what's available for consumption" or main component to other components and screens
+- `index.test.tsx` test the main or test the parts through other testing files
+- `props.ts` tell me what the inputs are to what is exposed or used internally
+- `stories.tsx` so we can see use cases in "isolation"
+
+Please note, I am intentionally encouraging
 
 ### Screens
+Unlike `Components` these should have access to the State Machine. The responsibility of `Screens` is to be the glue between navigation, state machine, and other components.
+
+Additionally, this provide for a playground and "real-life" testing bed for what patterns and components may be promoted to `app/Components` and similar.
 
 ### Theme
 Where we'll setup and configure overrides and customizations for the theme provided by our UI Library (i.e. UI Kitten)

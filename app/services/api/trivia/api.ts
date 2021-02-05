@@ -10,8 +10,8 @@ const DATA_KEY = 'results'
  * SagaSauce currently does not support an easy way to make this mapping
  * @param value
  */
-const mapEntity = (value: Entity): Question => {
-  return {
+export const mapEntity = (value: Entity): Question => {
+  const question = {
     category: value.category,
     type: value.type,
     difficulty: value.difficulty,
@@ -20,6 +20,11 @@ const mapEntity = (value: Entity): Question => {
     correctAnswer: value.correct_answer,
     incorrectAnswers: value.incorrect_answers
   }
+  if (question.type === 'boolean') {
+    question.possibleAnswers = ['False', 'True']
+  }
+
+  return question
 }
 
 /**
