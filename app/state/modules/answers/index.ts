@@ -25,7 +25,13 @@ const Actions = createActions({
   createAnswer: ['question', 'selection'],
   clearCurrent: null
 })
-export const ActionTypes = Actions.Types
+interface IActionTypes {
+  CREATE_ANSWER?: string
+  CLEAR_CURRENT?: string
+}
+export const ActionTypes: IActionTypes = {
+  ...Actions.Types
+}
 const Creators = Actions.Creators
 
 const createDispatchers = (dispatch: Dispatch<any>) => {

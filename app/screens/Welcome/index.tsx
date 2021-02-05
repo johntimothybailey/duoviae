@@ -6,7 +6,8 @@ import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
 import { riverBackground } from '../../../assets/images'
 import { useDispatch } from 'react-redux'
-import { ActionTypes as TriviaActionTypes } from '../../state/modules/trivia'
+import { ActionTypes as TriviaActions } from '../../state/modules/trivia'
+import { ActionTypes as AnswerActions } from '../../state/modules/answers'
 
 function Dashboard (): ReactElement {
   const navigation = useNavigation()
@@ -18,7 +19,9 @@ function Dashboard (): ReactElement {
 
   const dispatch = useDispatch()
   const beginQuiz = async () => {
-    dispatch({ type: TriviaActionTypes.GET_DATA })
+    dispatch({ type: TriviaActions.RESET_STEP })
+    dispatch({ type: TriviaActions.GET_DATA })
+    dispatch({ type: AnswerActions.CLEAR_CURRENT })
     navigation.navigate('TriviaStack', { screen: 'Questions' })
   }
   return (

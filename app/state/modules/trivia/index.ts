@@ -30,6 +30,7 @@ const Actions = createActions({
 })
 export interface IActionTypes extends RestActionTypes {
   NEXT_STEP: string
+  RESET_STEP: string
 }
 export const ActionTypes: IActionTypes = {
   ...RestActions.Types,
