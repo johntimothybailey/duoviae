@@ -8,13 +8,14 @@ import { ApplicationProvider as ThemeProvider, IconRegistry } from '@ui-kitten/c
 import { StateProvider } from './app/state'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
 import './app/translations/i18n'
+import { Palette } from './app/theme/config'
 
 export default function App () {
   return (
     <SafeAreaProvider>
       <IconRegistry icons={EvaIconsPack} />
       <StateProvider>
-        <ThemeProvider {...eva} theme={eva.dark}>
+        <ThemeProvider {...eva} theme={{ ...eva.dark, ...Palette }}>
           <NavigationContainer>
             <AppNavigator />
           </NavigationContainer>
