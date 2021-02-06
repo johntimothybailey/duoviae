@@ -6,7 +6,7 @@ import reduce from 'lodash/reduce'
  */
 // -------------------- REGISTER MODULES -------------------------------- //
 // 1. Import Modules
-import Trivia, { State as TriviaState } from './trivia'
+import Trivia, { State as TriviaState } from './quiz'
 import Answers, { State as AnswersState } from './answers'
 import { Api } from '../../services/api'
 import { Dispatch } from 'redux'
@@ -16,7 +16,7 @@ export const RegisteredModules = { Trivia, Answers }
 // add imported module HERE ^
 
 // 3. For TypeScript compliance add Module State structure here
-export interface State {
+export interface RootState {
   Trivia: TriviaState
   Answers: AnswersState
 }

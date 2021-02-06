@@ -2,7 +2,7 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable, { ImmutableObject } from 'seamless-immutable'
 import { Answer } from './Models'
 import { Dispatch } from 'redux'
-import { Question } from '../trivia/Models'
+import { Question } from '../quiz/Models'
 
 /** ------------- Models (TypeScript Support) --------------- */
 export interface State {
