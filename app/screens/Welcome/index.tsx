@@ -10,7 +10,7 @@ import { ActionTypes as Quiz } from '../../state/modules/quiz'
 import { State } from '../../state/modules/preferences'
 import { RootState } from '../../state'
 
-function Dashboard (): ReactElement {
+const Dashboard = (): ReactElement => {
   // State
   const preferences: State = useSelector((state: RootState) => {
     return state.Preferences

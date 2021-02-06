@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Screen } from '../../components'
 import { RootState } from '../../state'
 import { questionsBackground } from '../../../assets/images'
-import { useDispatch, useSelector } from 'react-redux'
+import { batch, useDispatch, useSelector } from 'react-redux'
 import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { Button, Card, Text, TextProps } from '@ui-kitten/components'
@@ -10,7 +10,8 @@ import { Answer } from '../../state/modules/answers/Models'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Item as AnswerItem } from '../../components/Answers'
 import Spacing from '../../theme/spacing'
-import { ActionTypes } from '../../state/modules/answers'
+import { ActionTypes as Quiz } from '../../state/modules/quiz'
+import { State } from '../../state/modules/preferences'
 
 const CardTitle = (props: TextProps) => {
   return (
@@ -21,6 +22,7 @@ const CardTitle = (props: TextProps) => {
 export default function Results (): ReactElement {
   const navigation = useNavigation()
   const dispatch = useDispatch()
+  // State
   const list = useSelector((state: RootState) => {
     return state.Answers.current
   })
@@ -31,8 +33,16 @@ export default function Results (): ReactElement {
     })
     return { percent: Math.round(correctAnswers.length / list.length * 100), count: correctAnswers.length }
   })
+  const preferences: State = useSelector((state: RootState) => {
+    return state.Preferences
+  })
+
+  // Actions
   const playAgain = () => {
-    dispatch({ type: ActionTypes.START })
+    batch(() => {
+      dispatch({ type: Quiz.START })
+      dispatch({ type: Quiz.GET_DATA, data: { amount: preferences.totalQuestions, type: preferences.answerType } })
+    })
     navigation.navigate('TriviaStack', { screen: 'Questions' })
   }
   return (
