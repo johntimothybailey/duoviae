@@ -8,3 +8,6 @@ Image by [Michal Jarmoluk](https://pixabay.com/users/jarmoluk-143740/?utm_source
 > [Pixabay License](https://pixabay.com/service/license/)
 > Free for commercial use
 > No attribution required
+
+### `samuel-ferrara.jpg`
+Photo by [Samuel Ferrara](https://unsplash.com/@samferrara?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) on [Unsplash](https://unsplash.com/collections/956010/favourites?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)
