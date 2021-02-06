@@ -6,6 +6,11 @@ const SplashBase: ViewStyle = {
   paddingVertical: Spacing.SMALL
 }
 
+const RegularBase: ViewStyle = {
+  paddingHorizontal: Spacing.MEDIUM,
+  paddingVertical: Spacing.SMALL
+}
+
 const BackgroundImageFull: ViewStyle = {
   width: '100%',
   height: '100%'
@@ -19,5 +24,6 @@ const BackgroundOverlay: ViewStyle = {
 export default StyleSheet.create({
   BackgroundOverlay: BackgroundOverlay,
   BackgroundFull: BackgroundImageFull,
-  SplashBase: SplashBase
+  Splash: SplashBase,
+  Regular: RegularBase
 })

@@ -15,6 +15,7 @@ export interface CreateActionParam {
 }
 
 /**
+ * TODO: Previous Answers
  */
 const INITIAL_STATE = Immutable({
   current: []
@@ -26,11 +27,14 @@ const Actions = createActions({
   clearCurrent: null
 })
 interface IActionTypes {
-  CREATE_ANSWER?: string
-  CLEAR_CURRENT?: string
+  START: string
+  CREATE_ANSWER: string
+  CLEAR_CURRENT: string
 }
 export const ActionTypes: IActionTypes = {
-  ...Actions.Types
+  START: 'START',
+  CREATE_ANSWER: 'CREATE_ANSWER',
+  CLEAR_CURRENT: 'CLEAR_CURRENT'
 }
 const Creators = Actions.Creators
 
@@ -75,9 +79,18 @@ export const reducerClearCurrent = (state: any = INITIAL_STATE): ImmutableObject
     current: []
   }
 }
+
+export const reduceStart = (state: any = INITIAL_STATE): ImmutableObject<State> => {
+  return {
+    ...state,
+    ...reducerClearCurrent(state)
+  }
+}
+
 const Reducers = createReducer(INITIAL_STATE, {
   [ActionTypes.CREATE_ANSWER]: reducerCreateAnswer,
-  [ActionTypes.CLEAR_CURRENT]: reducerClearCurrent
+  [ActionTypes.CLEAR_CURRENT]: reducerClearCurrent,
+  [ActionTypes.START]: reduceStart
 })
 
 export default {

@@ -3,6 +3,11 @@ import { ViewStyle } from 'react-native'
 import Spacing from '../../theme/spacing'
 
 export interface ContainerProps {
+  /**
+   * TODO: Temporary name and usage!
+   */
+  flex?: number
+
   children?: React.ReactNode | React.ReactNode[]
 
   style?: ViewStyle | ViewStyle[]

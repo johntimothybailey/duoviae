@@ -5,25 +5,34 @@ import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
 import { riverBackground } from '../../../assets/images'
-import { useDispatch } from 'react-redux'
-import { ActionTypes as TriviaActions } from '../../state/modules/trivia'
-import { ActionTypes as AnswerActions } from '../../state/modules/answers'
+import { batch, useDispatch, useSelector } from 'react-redux'
+import { ActionTypes as Quiz } from '../../state/modules/quiz'
+import { State } from '../../state/modules/preferences'
+import { RootState } from '../../state'
 
 function Dashboard (): ReactElement {
-  const navigation = useNavigation()
-  const { t } = useTranslation('welcomeScreen')
-  const textTitle = t('title')
-  const textIntro = t('boolean', { numberOfQuestions: 10 })
-  const textBegin = t('begin')
-  const textGoal = t('goal')
-
+  // State
+  const preferences: State = useSelector((state: RootState) => {
+    return state.Preferences
+  })
+  // Actions
   const dispatch = useDispatch()
+  const navigation = useNavigation()
   const beginQuiz = async () => {
-    dispatch({ type: TriviaActions.RESET_STEP })
-    dispatch({ type: TriviaActions.GET_DATA })
-    dispatch({ type: AnswerActions.CLEAR_CURRENT })
+    batch(() => {
+      dispatch({ type: Quiz.START })
+      dispatch({ type: Quiz.GET_DATA, data: { amount: preferences.totalQuestions, type: preferences.answerType } })
+    })
     navigation.navigate('TriviaStack', { screen: 'Questions' })
   }
+  // Translations
+  const { t } = useTranslation('welcomeScreen')
+  const textTitle = t('title')
+  const textIntro = preferences.answerType === 'boolean'
+    ? t('boolean', { numberOfQuestions: preferences.totalQuestions })
+    : t('multiple', { numberOfQuestions: preferences.totalQuestions })
+  const textBegin = t('begin')
+  const textGoal = t('goal')
   return (
     <Screen preset='splash' background={riverBackground}>
       <Text category='h1'>{textTitle}</Text>

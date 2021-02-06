@@ -32,7 +32,7 @@ export default function Results (): ReactElement {
     return { percent: Math.round(correctAnswers.length / list.length * 100), count: correctAnswers.length }
   })
   const playAgain = () => {
-    dispatch({ type: ActionTypes.CLEAR_CURRENT })
+    dispatch({ type: ActionTypes.START })
     navigation.navigate('TriviaStack', { screen: 'Questions' })
   }
   return (
@@ -67,7 +67,7 @@ export default function Results (): ReactElement {
           return (<AnswerItem item={answer} key={index} />)
         })}
       </Card>
-      <Button onPress={playAgain}>Play Again</Button>
+      <Button style={{ marginBottom: Spacing.LARGER }} onPress={playAgain}>Play Again</Button>
     </Screen>
   )
 }

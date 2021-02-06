@@ -20,14 +20,13 @@ const onBackPress = (withBack: boolean | undefined) => {
 
 export const WithAppBar = (props: ScreenProps): ReactElement => {
   const safeAreaInsets: EdgeInsets = useSafeAreaInsets()
-
   return (
     <View style={{ flex: 1 }}>
       <AppBar
         title={props.title} subtitle={props.subtitle} onBackPress={onBackPress(props.withBack)}
         style={{ marginTop: Math.max(safeAreaInsets.top, Spacing.MEDIUM), backgroundColor: 'rgba(0,0,0,0)' }}
       />
-      <Container height='100%' space='around' style={{ ...styles.SplashBase }}>
+      <Container height='100%' space='around' style={{ ...styles.Splash }}>
         {props.children}
       </Container>
     </View>
@@ -52,7 +51,7 @@ const SplashScreen = (props: ScreenProps): ReactElement => {
       </WithAppBar>
       )
     : (
-      <Container space='around' style={styles.SplashBase}>
+      <Container space='around' style={styles.Splash}>
         {props.children}
       </Container>
       )
@@ -60,7 +59,7 @@ const SplashScreen = (props: ScreenProps): ReactElement => {
 
 const RegularScreen = (props: ScreenProps): ReactElement => {
   const theme = useTheme()
-  const style = { flex: 1, ...styles.SplashBase }
+  const style = { flex: 1, ...styles.Splash }
   const safeAreaInsets: EdgeInsets = useSafeAreaInsets()
   if (!props.background) {
     style.backgroundColor = theme['background-basic-color-1']
@@ -71,7 +70,7 @@ const RegularScreen = (props: ScreenProps): ReactElement => {
         title={props.title} subtitle={props.subtitle} onBackPress={onBackPress(props.withBack)}
         style={{ backgroundColor: 'rgba(0,0,0,0)' }}
       />
-      <Container height='100%' space='around' style={{ ...styles.SplashBase }}>
+      <Container height='100%' space='around' style={{ ...styles.Regular }}>
         {props.children}
       </Container>
     </ScrollView>

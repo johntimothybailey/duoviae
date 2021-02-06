@@ -6,8 +6,8 @@ import R from 'ramda'
 
 export const makeStyles = (props: ContainerProps): ViewStyle => {
   const styles: ViewStyle = {
-    flex: 1,
-    flexDirection: R.isEmpty(props.row) ? 'row' : 'column',
+    flex: props.flex ?? 1,
+    flexDirection: props.row ? 'row' : 'column',
     justifyContent: 'center',
     alignContent: R.isEmpty(props['fit-items']) ? 'stretch' : 'center',
     alignItems: R.isEmpty(props['fit-items']) ? 'stretch' : 'center',
@@ -53,49 +53,51 @@ export const makeStyles = (props: ContainerProps): ViewStyle => {
   }
 }
 
+export const renderChildren = (props: ContainerProps): ReactElement | ReactElement[] | null => {
+  const childStyles: ViewStyle = {}
+  if (props['fit-items']) {
+    childStyles.flex = 1
+  }
+  if (props.preset === 'form') {
+    childStyles.marginVertical = Spacing.SMALLER
+    childStyles.width = '100%'
+  }
+  if (R.is(Number, props.space)) {
+    if (props.row) {
+      childStyles.paddingHorizontal = props.space
+    } else {
+      childStyles.paddingVertical = props.space
+    }
+  }
+  if (R.isNil(props.children)) {
+    return null
+  }
+  let children = props.children
+  if (!Array.isArray(props.children)) {
+    children = [props.children]
+  }
+  const validChildren = R.filter((child: any) => {
+    return child && React.isValidElement(child)
+  }, children as any[])
+  return React.Children.map(validChildren as ReactElement[], (child: ReactElement) => {
+    return (React.cloneElement(child, {
+      ...child.props,
+      style: {
+        ...child.props.style,
+        ...childStyles
+      }
+    }))
+  })
+}
+
 /**
- * TODO: Memoize / Optimize
+ * TODO: Optimize makeStyles and renderChildren
+ * TODO: Better "control" over flex. Control in terms of usage not the specific `flex` property
  * @param props
  * @constructor
  */
 export default function Container (props: ContainerProps): ReactElement {
-  const renderChildren = () => {
-    const childStyles: ViewStyle = {}
-    if (props['fit-items']) {
-      childStyles.flex = 1
-    }
-    if (props.preset === 'form') {
-      childStyles.marginVertical = Spacing.SMALLER
-      childStyles.width = '100%'
-    }
-    if (R.is(Number, props.space)) {
-      if (props.row) {
-        childStyles.paddingHorizontal = props.space
-      } else {
-        childStyles.paddingVertical = props.space
-      }
-    }
-    if (R.isNil(props.children)) {
-      return null
-    }
-    let children = props.children
-    if (!Array.isArray(props.children)) {
-      children = [props.children]
-    }
-    const validChildren = R.filter((child: any) => {
-      return child && React.isValidElement(child)
-    }, children as any[])
-    return React.Children.map(validChildren as ReactElement[], (child: ReactElement) => {
-      return (React.cloneElement(child, {
-        ...child.props,
-        style: {
-          ...child.props.style,
-          ...childStyles
-        }
-      }))
-    })
-  }
   return (
-    <View style={makeStyles(props)}>{renderChildren()}</View>
+    <View style={makeStyles(props)}>{renderChildren(props)}</View>
   )
 }
