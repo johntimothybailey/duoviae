@@ -1,10 +1,12 @@
 import React from 'react'
 import {
+  IndexPath,
   OverflowMenu,
   TopNavigation,
   TopNavigationAction,
   TopNavigationActionElement
 } from '@ui-kitten/components'
+import { isFunction } from 'lodash'
 import { BackIcon, MoreVerticalIcon } from '../Icons'
 import { AppBarProps } from './props'
 
@@ -17,7 +19,7 @@ export const AppBar = (props: AppBarProps): TopNavigationActionElement => {
   const { menu, backIcon, menuIcon, onBackPress, ...topNavigationProps } = props
   const [menuVisible, setMenuVisible] = React.useState(false)
 
-  const onMenuSelect = (index: number) => {
+  const onMenuSelect = (index: IndexPath) => {
     setMenuVisible(false)
   }
 
@@ -27,7 +29,7 @@ export const AppBar = (props: AppBarProps): TopNavigationActionElement => {
 
   const renderMenuAnchorAction = (): TopNavigationActionElement => (
     <TopNavigationAction
-      icon={props.menuIcon ?? MoreVerticalIcon}
+      icon={props.menuIcon ? MoreVerticalIcon : undefined}
       onPress={onMenuActionPress}
     />
   )
@@ -40,7 +42,7 @@ export const AppBar = (props: AppBarProps): TopNavigationActionElement => {
       onSelect={onMenuSelect}
       onBackdropPress={onMenuActionPress}
     >
-      {menu()}
+      {isFunction(menu) ? menu() : undefined}
     </OverflowMenu>
   )
 
@@ -50,7 +52,6 @@ export const AppBar = (props: AppBarProps): TopNavigationActionElement => {
       onPress={onBackPress}
     />
   )
-
   return (
     <TopNavigation
       {...topNavigationProps}

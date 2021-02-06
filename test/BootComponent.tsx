@@ -1,9 +1,9 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, ReactElement } from 'react'
 import * as eva from '@eva-design/eva'
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
-export const BootComponent = (props: PropsWithChildren<any>) => {
+export const BootComponent = (props: PropsWithChildren<any>): ReactElement => {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />

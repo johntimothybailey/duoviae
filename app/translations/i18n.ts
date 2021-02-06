@@ -9,7 +9,8 @@ const resources = {
   }
 }
 
-i18n
+// eslint-disable-next-line no-void
+void i18n
   .use(initReactI18next)
   .init({
     ns: ['welcomeScreen'],

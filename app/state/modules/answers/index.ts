@@ -1,7 +1,7 @@
 import { createReducer, createActions } from 'reduxsauce'
-import Immutable from 'seamless-immutable'
+import Immutable, { ImmutableObject } from 'seamless-immutable'
 import { Answer } from './Models'
-import { Dispatch } from 'react'
+import { Dispatch } from 'redux'
 import { Question } from '../trivia/Models'
 
 /** ------------- Models (TypeScript Support) --------------- */
@@ -34,7 +34,7 @@ export const ActionTypes: IActionTypes = {
 }
 const Creators = Actions.Creators
 
-const createDispatchers = (dispatch: Dispatch<any>) => {
+const createDispatchers = (dispatch: Dispatch): any => {
   return {
     createAnswer: (question: Question, selection: string) => {
       dispatch(Creators.createAnswer(question, selection))
@@ -51,7 +51,8 @@ const createSagas = (): any[] => {
 }
 
 /** ------------ Map Reducers  --------- */
-export const reducerCreateAnswer = (state: any = INITIAL_STATE, action: CreateActionParam) => {
+// eslint-disable-next-line @typescript-eslint/default-param-last
+export const reducerCreateAnswer = (state: any = INITIAL_STATE, action: CreateActionParam): ImmutableObject<State> => {
   const question: Question = action.question
   const selection: string = action.selection
   const now: Date = new Date(Date.now())
@@ -68,7 +69,7 @@ export const reducerCreateAnswer = (state: any = INITIAL_STATE, action: CreateAc
   }
 }
 
-export const reducerClearCurrent = (state: any = INITIAL_STATE) => {
+export const reducerClearCurrent = (state: any = INITIAL_STATE): ImmutableObject<State> => {
   return {
     ...state,
     current: []

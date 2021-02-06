@@ -9,7 +9,7 @@ import reduce from 'lodash/reduce'
 import Trivia, { State as TriviaState } from './trivia'
 import Answers, { State as AnswersState } from './answers'
 import { Api } from '../../services/api'
-import { Dispatch } from 'react'
+import { Dispatch } from 'redux'
 
 // 2. Register Modules
 export const RegisteredModules = { Trivia, Answers }
@@ -23,7 +23,7 @@ export interface State {
 
 // ------------------------------------------------------------- //
 // ---------------------- MAGIC -------------------------------- //
-export const makeDispatchers = (dispatch: Dispatch<any>): any => {
+export const makeDispatchers = (dispatch: Dispatch): any => {
   return reduce(
     RegisteredModules,
     (acc, value) => {
