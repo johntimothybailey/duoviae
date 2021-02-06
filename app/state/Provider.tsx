@@ -35,7 +35,7 @@ const Provider = (props: PropsWithChildren<any>): ReactElement => {
     )
   }
   return (
-    <ReduxProvider store={store}>
+    <ReduxProvider store={store as any}>
       {props.children}
     </ReduxProvider>
   )

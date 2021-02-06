@@ -11,11 +11,24 @@ const Question = (props: QuestionProps): ReactElement => {
   useEffect(() => {
     setSelect(undefined)
   }, [props.item])
+
+  const renderFooter = () => (
+    <Button
+      accessibilityHint='Continue'
+      disabled={selected === undefined}
+      onPress={() => {
+        props.onSelect(Number.isInteger(selected) ? possibleAnswers[selected as any] : undefined)
+      }}
+    >
+      {props.continueLabel}
+    </Button>
+  )
+
   return (
     <Card
       style={{ width: '100%' }}
       header={() => <Category {...props} />}
-      footer={() => <Button accessibilityHint='Continue' disabled={selected === undefined} onPress={() => props.onSelect(possibleAnswers[selected])}>{props.continueLabel}</Button>}
+      footer={renderFooter}
     >
       <Layout level='4' style={{ ...QuestionStyles.question, width: '100%' }}>
         <Text category='p1' style={QuestionStyles.question}>{V.unescapeHtml(props.item.question)}</Text>
@@ -23,7 +36,7 @@ const Question = (props: QuestionProps): ReactElement => {
       <RadioGroup
         style={QuestionStyles.answers}
         selectedIndex={selected}
-        onChange={setSelect}
+        onChange={(index: any) => setSelect(index)}
       >
         {possibleAnswers.map((value: string, index: number) => {
           return (<Radio key={index}>{value}</Radio>)

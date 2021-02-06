@@ -60,4 +60,25 @@ describe('Services > Trivia API', () => {
       expect(question).toHaveProperty('incorrectAnswers', ['True'])
     })
   })
+  describe('createData', () => {
+    it('is not implement', async () => {
+      const api = new Api()
+      await api.setup()
+      await expect(api.createData()).rejects.toEqual(Error('Not implemented, because the HTTP API provided by https://opentdb.com/ does not support Create [POST]'))
+    })
+  })
+  describe('updateData', () => {
+    it('is not implement', async () => {
+      const api = new Api()
+      await api.setup()
+      await expect(api.updateData()).rejects.toEqual(Error('Not implemented, because the HTTP API provided by https://opentdb.com/ does not support Update [PUT/PATCH]'))
+    })
+  })
+  describe('deleteData', () => {
+    it('is not implement', async () => {
+      const api = new Api()
+      await api.setup()
+      await expect(api.deleteData()).rejects.toEqual(Error('Not implemented, because the HTTP API provided by https://opentdb.com/ does not support Delete [DELETE]'))
+    })
+  })
 })

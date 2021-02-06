@@ -2,7 +2,7 @@ import { ApiResponse, ApisauceInstance, create } from 'apisauce'
 import API_CONFIG from './config'
 import { Entity, GetQueryParams } from './types'
 import { ApiConfig, HydrogenAPI, SagaSauceAPI } from '../IHydrogenAPI'
-import { Question } from '../../../state/modules/trivia/Models'
+import { Question } from '../../../state/modules/quiz/Models'
 
 const DATA_KEY = 'results'
 
@@ -52,14 +52,9 @@ export class Api implements SagaSauceAPI, HydrogenAPI {
   }
 
   /**
-   * Sets up the API.  This will be called during the bootup
-   * sequence and will happen before the first React component
-   * is mounted.
-   *
-   * Be as quick as possible in here.
+   * Setup the API
    */
   async setup (): Promise<any> {
-    // construct the apisauce instance
     this.apisauce = create({
       baseURL: this.config.url,
       timeout: this.config.timeout,
@@ -92,14 +87,14 @@ export class Api implements SagaSauceAPI, HydrogenAPI {
   }
 
   createData = async (): Promise<any> => {
-    throw new Error('Currently the HTTP API provided by https://opentdb.com/ does not support POST/Create')
+    throw new Error('Not implemented, because the HTTP API provided by https://opentdb.com/ does not support Create [POST]')
   }
 
   updateData = async (): Promise<any> => {
-    throw new Error('Currently the HTTP API provided by https://opentdb.com/ does not support PUT/PATCH/Update')
+    throw new Error('Not implemented, because the HTTP API provided by https://opentdb.com/ does not support Update [PUT/PATCH]')
   }
 
   deleteData = async (): Promise<any> => {
-    throw new Error('Currently the HTTP API provided by https://opentdb.com/ does not support DELETE/Delete')
+    throw new Error('Not implemented, because the HTTP API provided by https://opentdb.com/ does not support Delete [DELETE]')
   }
 }

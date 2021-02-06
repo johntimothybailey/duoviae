@@ -1,5 +1,5 @@
 import { reducerClearCurrent, reducerCreateAnswer, State } from './index'
-import { Question } from '../trivia/Models'
+import { Question } from '../quiz/Models'
 import { Answer } from './Models'
 import { IsCorrectAnswer, IsIncorrectAnswer } from '../../../../test/fixtures/AnswersStateMachine'
 

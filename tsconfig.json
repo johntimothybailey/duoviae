@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "jsx": "react-native",
     "module": "esnext",
     "lib": ["dom", "esnext"],
@@ -9,11 +10,12 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "strictPropertyInitialization": false,
     "strict": true,
     "typeRoots": [
       "./types",
       "./node_modules/@types"
     ]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "babel.config.js"]
 }

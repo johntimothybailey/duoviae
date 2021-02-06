@@ -8,6 +8,7 @@ export const QuestionStyles = StyleSheet.create({
   },
   category: {
     textAlign: 'center',
+    paddingHorizontal: Spacing.SMALLER,
     paddingVertical: Spacing.LARGE
   },
   answers: {
@@ -19,10 +20,14 @@ export const QuestionStyles = StyleSheet.create({
 export const ProgressStyles = StyleSheet.create({
   container: {
     flex: 0,
-    paddingVertical: Spacing.LARGE,
+    width: '100%',
+    marginVertical: Spacing.LARGE,
+    paddingTop: Spacing.TINY,
+    paddingBottom: Spacing.SMALLER,
     alignItems: 'center'
   },
   text: {
-    paddingVertical: Spacing.SMALL
+    flex: 0,
+    paddingBottom: Spacing.MEDIUM
   }
 })

@@ -2,12 +2,17 @@ import React, { ReactElement, useEffect } from 'react'
 import Container from '../Container'
 import { Text } from '@ui-kitten/components'
 import { QuestionsProps } from './props'
-import { Question as QuestionModel } from '../../state/modules/trivia/Models'
+import { Question as QuestionModel } from '../../state/modules/quiz/Models'
 import Spacing from '../../theme/spacing'
 import Question from './Question'
 import Progress from './Progress'
+import { useTranslation } from 'react-i18next'
 
 const Questions = (props: QuestionsProps): ReactElement => {
+  // Translations
+  const { t } = useTranslation('common')
+  const noQuestionsString: string = t('noQuestions')
+  //
   let question: QuestionModel | undefined = props.list[props.step]
   useEffect(() => {
     question = props.list[props.step]
@@ -18,13 +23,13 @@ const Questions = (props: QuestionsProps): ReactElement => {
         ? (<Question
             item={question}
             index={props.step}
-            onSelect={(selection: string) => {
-              props.onSaveAnswer(question, selection)
+            onSelect={(selection: string | undefined) => {
+              props.onSaveAnswer(question, selection as any)
               props.onNext()
             }}
-            continueLabel='Continue'
+            continueLabel={t('continue')}
            />)
-        : <Text>No question available</Text>}
+        : <Text>{noQuestionsString}</Text>}
       <Progress {...props} step={props.step} />
     </Container>
   )

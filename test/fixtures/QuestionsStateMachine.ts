@@ -1,4 +1,4 @@
-import { Question } from '../../app/state/modules/trivia/Models'
+import { Question } from '../../app/state/modules/quiz/Models'
 export const FalseBoolean: Question = {
   category: 'Science & Nature',
   type: 'boolean',

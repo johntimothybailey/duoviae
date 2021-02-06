@@ -5,8 +5,8 @@ import { Spinner } from '@ui-kitten/components'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../state'
 import { ActionTypes as AnswerActions } from '../../state/modules/answers'
-import { ActionTypes as TriviaActions } from '../../state/modules/trivia'
-import { Question } from '../../state/modules/trivia/Models'
+import { ActionTypes as Quiz } from '../../state/modules/quiz'
+import { Question } from '../../state/modules/quiz/Models'
 import { useNavigation } from '@react-navigation/native'
 import { questionsBackground } from '../../../assets/images'
 
@@ -14,10 +14,8 @@ const createNextHandler = (dispatch: Dispatch, list: Question[], activeStep: num
   const navigation = useNavigation()
   return () => {
     if (activeStep < list.length - 1) {
-      dispatch({ type: TriviaActions.NEXT_STEP })
+      dispatch({ type: Quiz.NEXT_STEP })
     } else {
-      dispatch({ type: TriviaActions.RESET_STEP })
-      dispatch({ type: TriviaActions.GET_DATA })
       navigation.navigate('TriviaStack', { screen: 'Results' })
     }
   }

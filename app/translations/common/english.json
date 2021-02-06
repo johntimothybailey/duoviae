@@ -1,3 +1,6 @@
 {
-  "continue": "Continue"
+  "continue": "Continue",
+  "noQuestions": "No questions available",
+  "questions": "Questions",
+  "question": "Question"
 }

@@ -1,8 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce'
-import Immutable from 'seamless-immutable'
+import Immutable, { ImmutableObject } from 'seamless-immutable'
 import { Answer } from './Models'
-import { Dispatch } from 'react'
-import { Question } from '../trivia/Models'
+import { Dispatch } from 'redux'
+import { Question } from '../quiz/Models'
 
 /** ------------- Models (TypeScript Support) --------------- */
 export interface State {
@@ -15,6 +15,7 @@ export interface CreateActionParam {
 }
 
 /**
+ * TODO: Previous Answers
  */
 const INITIAL_STATE = Immutable({
   current: []
@@ -26,15 +27,18 @@ const Actions = createActions({
   clearCurrent: null
 })
 interface IActionTypes {
-  CREATE_ANSWER?: string
-  CLEAR_CURRENT?: string
+  START: string
+  CREATE_ANSWER: string
+  CLEAR_CURRENT: string
 }
 export const ActionTypes: IActionTypes = {
-  ...Actions.Types
+  START: 'START',
+  CREATE_ANSWER: 'CREATE_ANSWER',
+  CLEAR_CURRENT: 'CLEAR_CURRENT'
 }
 const Creators = Actions.Creators
 
-const createDispatchers = (dispatch: Dispatch<any>) => {
+const createDispatchers = (dispatch: Dispatch): any => {
   return {
     createAnswer: (question: Question, selection: string) => {
       dispatch(Creators.createAnswer(question, selection))
@@ -51,7 +55,8 @@ const createSagas = (): any[] => {
 }
 
 /** ------------ Map Reducers  --------- */
-export const reducerCreateAnswer = (state: any = INITIAL_STATE, action: CreateActionParam) => {
+// eslint-disable-next-line @typescript-eslint/default-param-last
+export const reducerCreateAnswer = (state: any = INITIAL_STATE, action: CreateActionParam): ImmutableObject<State> => {
   const question: Question = action.question
   const selection: string = action.selection
   const now: Date = new Date(Date.now())
@@ -68,15 +73,24 @@ export const reducerCreateAnswer = (state: any = INITIAL_STATE, action: CreateAc
   }
 }
 
-export const reducerClearCurrent = (state: any = INITIAL_STATE) => {
+export const reducerClearCurrent = (state: any = INITIAL_STATE): ImmutableObject<State> => {
   return {
     ...state,
     current: []
   }
 }
+
+export const reduceStart = (state: any = INITIAL_STATE): ImmutableObject<State> => {
+  return {
+    ...state,
+    ...reducerClearCurrent(state)
+  }
+}
+
 const Reducers = createReducer(INITIAL_STATE, {
   [ActionTypes.CREATE_ANSWER]: reducerCreateAnswer,
-  [ActionTypes.CLEAR_CURRENT]: reducerClearCurrent
+  [ActionTypes.CLEAR_CURRENT]: reducerClearCurrent,
+  [ActionTypes.START]: reduceStart
 })
 
 export default {

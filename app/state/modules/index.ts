@@ -6,24 +6,26 @@ import reduce from 'lodash/reduce'
  */
 // -------------------- REGISTER MODULES -------------------------------- //
 // 1. Import Modules
-import Trivia, { State as TriviaState } from './trivia'
+import Trivia, { State as TriviaState } from './quiz'
 import Answers, { State as AnswersState } from './answers'
+import Preferences, { State as PreferencesState } from './preferences'
 import { Api } from '../../services/api'
-import { Dispatch } from 'react'
+import { Dispatch } from 'redux'
 
 // 2. Register Modules
-export const RegisteredModules = { Trivia, Answers }
+export const RegisteredModules = { Trivia, Answers, Preferences }
 // add imported module HERE ^
 
 // 3. For TypeScript compliance add Module State structure here
-export interface State {
+export interface RootState {
   Trivia: TriviaState
   Answers: AnswersState
+  Preferences: PreferencesState
 }
 
 // ------------------------------------------------------------- //
 // ---------------------- MAGIC -------------------------------- //
-export const makeDispatchers = (dispatch: Dispatch<any>): any => {
+export const makeDispatchers = (dispatch: Dispatch): any => {
   return reduce(
     RegisteredModules,
     (acc, value) => {

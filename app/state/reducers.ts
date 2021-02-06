@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux'
+import { combineReducers, ReducersMapObject } from 'redux'
 import { resettableReducer } from 'reduxsauce'
-import { makeReducers } from './modules'
+import { makeReducers, RootState } from './modules'
 
 /**
  * ALL REDUCERS MUST GO INTO A MODULE.
@@ -9,7 +9,7 @@ import { makeReducers } from './modules'
  */
 
 const resettable = resettableReducer('RESET')
-const createReducers = () => {
+const createReducers = (): ReducersMapObject<RootState> => {
   return {
     ...makeReducers(resettable)
   }
