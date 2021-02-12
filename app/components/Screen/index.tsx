@@ -58,8 +58,7 @@ const RegularScreen = (props: ScreenProps): ReactElement => {
   return (
     <ScrollView style={{ flex: 1, marginTop: Math.max(safeAreaInsets.top, Spacing.MEDIUM) }}>
       <AppBar
-        title={props.title} subtitle={props.subtitle} onBackPress={onBackPress(props.withBack)}
-        style={{ backgroundColor: 'rgba(0,0,0,0)' }}
+        title={props.title} subtitle={props.subtitle} onBackPress={onBackPress(props.withBack)} transparent
       />
       <Container height='100%' space='around' style={{ ...styles.Regular }}>
         {props.children}
