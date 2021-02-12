@@ -3,6 +3,7 @@
 function loadStories () {
   require('../app/components/Container/stories')
   require('../app/components/Questions/stories')
+  require('../app/components/Answers/stories')
   require('../app/components/AppBar/stories')
 }
 
