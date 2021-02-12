@@ -2,6 +2,7 @@
 
 function loadStories () {
   require('../app/components/Container/stories')
+  require('../app/components/AppBar/stories')
 }
 
 module.exports = {
