@@ -9,6 +9,8 @@ import {
 import { isFunction } from 'lodash'
 import { BackIcon, MoreVerticalIcon } from '../Icons'
 import { AppBarProps } from './props'
+import { ViewStyle } from 'react-native'
+import { TransparentBackground } from './styles'
 
 /**
  * @cite
@@ -52,9 +54,13 @@ export const AppBar = (props: AppBarProps): TopNavigationActionElement => {
       onPress={onBackPress}
     />
   )
+
+  const style: ViewStyle = props.transparent ? TransparentBackground : {}
+
   return (
     <TopNavigation
       {...topNavigationProps}
+      style={{ ...style, ...props.style }}
       alignment='center'
       accessoryLeft={onBackPress && renderBackAction}
       accessoryRight={menu && renderMenuAction}
