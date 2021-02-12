@@ -1,13 +1,8 @@
-// Auto-generated file created by react-native-storybook-loader
-// Do not edit.
-//
-// https://github.com/elderfo/react-native-storybook-loader.git
+// TODO use https://github.com/elderfo/react-native-storybook-loader.git
 
-function loadStories () {}
-
-const stories = []
+function loadStories () {
+}
 
 module.exports = {
-  loadStories,
-  stories
+  loadStories
 }
