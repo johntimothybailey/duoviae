@@ -17,7 +17,25 @@ export const TrueBoolean: Question = {
   correctAnswer: 'True',
   incorrectAnswers: ['False']
 }
-export const LIST: Question[] = [
+export const MultipleChoice: Question = {
+  category: 'Science & Nature',
+  type: 'multiple',
+  difficulty: 'hard',
+  question: 'Which of these is a stop codon in DNA?',
+  possibleAnswers: [
+    'TAA',
+    'ACT',
+    'ACA',
+    'GTA'
+  ],
+  correctAnswer: 'TAA',
+  incorrectAnswers: [
+    'ACT',
+    'ACA',
+    'GTA'
+  ]
+}
+export const ListOfQuestions: Question[] = [
   TrueBoolean,
   FalseBoolean
 ]

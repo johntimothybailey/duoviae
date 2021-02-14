@@ -7,5 +7,5 @@ export interface AppBarProps extends TopNavigationProps {
   backIcon?: (props: IconProps) => React.ReactElement<ImageProps>
   menuIcon?: (props: IconProps) => React.ReactElement<ImageProps>
   onBackPress?: () => void
-  transparent?: boolean // TODO: implement
+  transparent?: boolean
 }

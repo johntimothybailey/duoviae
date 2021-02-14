@@ -1,26 +1,23 @@
-import 'react-native-gesture-handler'
-import React from 'react'
-import * as eva from '@eva-design/eva'
-import { NavigationContainer } from '@react-navigation/native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { AppNavigator } from './app/navigation/AppNavigator'
-import { ApplicationProvider as ThemeProvider, IconRegistry } from '@ui-kitten/components'
-import { StateProvider } from './app/state'
-import { EvaIconsPack } from '@ui-kitten/eva-icons'
-import './app/translations/i18n'
-import { Palette } from './app/theme/config'
-
-export default function App () {
-  return (
-    <SafeAreaProvider>
-      <IconRegistry icons={EvaIconsPack} />
-      <StateProvider>
-        <ThemeProvider {...eva} theme={{ ...eva.dark, ...Palette }}>
-          <NavigationContainer>
-            <AppNavigator />
-          </NavigationContainer>
-        </ThemeProvider>
-      </StateProvider>
-    </SafeAreaProvider>
-  )
+// This is the first file that ReactNative will run when it starts up.
+//
+// We jump out of here immediately and into our main entry point instead.
+//
+// It is possible to have React Native load our main module first, but we'd have to
+// change that in both AppDelegate.m and MainApplication.java.  This would have the
+// side effect of breaking other tooling like mobile-center and react-native-rename.
+//
+// It's easier just to leave it here.
+import 'react-native-get-random-values'
+import App from './app/index'
+// @ts-expect-error
+import { SHOW_STORYBOOK } from '@env'
+// Should we show storybook instead of our app?
+let RootComponent: any = App
+if (SHOW_STORYBOOK === 'true') {
+  // Only include Storybook if we're in dev mode
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { StorybookUIRoot } = require('./storybook')
+  RootComponent = StorybookUIRoot
 }
+
+export default RootComponent

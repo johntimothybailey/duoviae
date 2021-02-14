@@ -64,9 +64,9 @@ export const renderChildren = (props: ContainerProps): ReactElement | ReactEleme
   }
   if (R.is(Number, props.space)) {
     if (props.row) {
-      childStyles.paddingHorizontal = props.space
+      childStyles.marginHorizontal = props.space
     } else {
-      childStyles.paddingVertical = props.space
+      childStyles.marginVertical = props.space
     }
   }
   if (R.isNil(props.children)) {

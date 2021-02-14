@@ -3,12 +3,13 @@ import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context'
 import Container from '../Container'
 import { ScreenProps } from './props'
 import styles from './styles'
-import { ImageBackground, View } from 'react-native'
 import { useTheme } from '@ui-kitten/components'
 import { useNavigation } from '@react-navigation/native'
 import { Spacing } from '../../theme'
 import AppBar from '../AppBar'
 import { ScrollView } from 'react-native-gesture-handler'
+import BackgroundImage from './BackgroundImage'
+import { View } from 'react-native'
 
 const onBackPress = (withBack: boolean | undefined) => {
   if (withBack) {
@@ -30,16 +31,6 @@ export const WithAppBar = (props: ScreenProps): ReactElement => {
         {props.children}
       </Container>
     </View>
-  )
-}
-
-const BackgroundImage = (props: ScreenProps): ReactElement => {
-  return (
-    <ImageBackground source={props.background} style={styles.BackgroundFull} resizeMode='cover'>
-      <View style={styles.BackgroundOverlay}>
-        {props.children}
-      </View>
-    </ImageBackground>
   )
 }
 
@@ -67,8 +58,7 @@ const RegularScreen = (props: ScreenProps): ReactElement => {
   return (
     <ScrollView style={{ flex: 1, marginTop: Math.max(safeAreaInsets.top, Spacing.MEDIUM) }}>
       <AppBar
-        title={props.title} subtitle={props.subtitle} onBackPress={onBackPress(props.withBack)}
-        style={{ backgroundColor: 'rgba(0,0,0,0)' }}
+        title={props.title} subtitle={props.subtitle} onBackPress={onBackPress(props.withBack)} transparent
       />
       <Container height='100%' space='around' style={{ ...styles.Regular }}>
         {props.children}
