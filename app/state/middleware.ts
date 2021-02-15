@@ -1,10 +1,12 @@
 import { applyMiddleware, StoreEnhancer } from 'redux'
 import createSagaMiddleware, { Task } from 'redux-saga'
+import ImmutableStateInvariant from 'redux-immutable-state-invariant'
 import { SagaMiddleware } from '@redux-saga/core'
 import values from 'lodash/values'
 
 export interface Middlewares {
   saga: SagaMiddleware
+  immutableStateInvariant?: any
 }
 
 export const createMiddleware = (): Middlewares => {
@@ -12,11 +14,17 @@ export const createMiddleware = (): Middlewares => {
   // TODO: SagaMonitor with connect to Reactotron (or similar)
   const sagaMiddleware = createSagaMiddleware()
 
-  // Mutations
-  // TODO: https://github.com/leoasis/redux-immutable-state-invariant
-
-  return {
+  const productionMiddleware = {
     saga: sagaMiddleware
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    return productionMiddleware
+  } else {
+    return {
+      ...productionMiddleware,
+      immutableStateInvariant: ImmutableStateInvariant()
+    }
   }
 }
 
