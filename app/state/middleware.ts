@@ -6,7 +6,22 @@ import values from 'lodash/values'
 
 export interface Middlewares {
   saga: SagaMiddleware
+  // Dev Optionals
   immutableStateInvariant?: any
+  flipper?: any
+}
+
+interface DevMiddlewares {
+  immutableStateInvariant: any
+  flipper: any
+}
+
+const createDevMiddleware = (): DevMiddlewares => {
+  return {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    flipper: require('redux-flipper').default(),
+    immutableStateInvariant: ImmutableStateInvariant()
+  }
 }
 
 export const createMiddleware = (): Middlewares => {
@@ -23,7 +38,7 @@ export const createMiddleware = (): Middlewares => {
   } else {
     return {
       ...productionMiddleware,
-      immutableStateInvariant: ImmutableStateInvariant()
+      ...createDevMiddleware()
     }
   }
 }
