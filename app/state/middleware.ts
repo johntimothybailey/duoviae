@@ -1,22 +1,39 @@
 import { applyMiddleware, StoreEnhancer } from 'redux'
 import createSagaMiddleware, { Task } from 'redux-saga'
-import { SagaMiddleware } from '@redux-saga/core'
+import ImmutableStateInvariant from 'redux-immutable-state-invariant'
+import { SagaMiddleware, SagaMonitor } from '@redux-saga/core'
 import values from 'lodash/values'
 
 export interface Middlewares {
   saga: SagaMiddleware
+  // Dev Optionals
+  immutableStateInvariant?: any
 }
 
-export const createMiddleware = (): Middlewares => {
-  // Saga
-  // TODO: SagaMonitor with connect to Reactotron (or similar)
-  const sagaMiddleware = createSagaMiddleware()
+interface DevMiddlewares {
+  immutableStateInvariant: any
+}
 
-  // Mutations
-  // TODO: https://github.com/leoasis/redux-immutable-state-invariant
-
+const createDevMiddleware = (): DevMiddlewares => {
   return {
+    immutableStateInvariant: ImmutableStateInvariant()
+  }
+}
+
+export const createMiddleware = (sagaMonitor: SagaMonitor | undefined): Middlewares => {
+  const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
+
+  const productionMiddleware = {
     saga: sagaMiddleware
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    return productionMiddleware
+  } else {
+    return {
+      ...productionMiddleware,
+      ...createDevMiddleware()
+    }
   }
 }
 

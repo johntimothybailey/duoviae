@@ -60,7 +60,7 @@ export const AppBar = (props: AppBarProps): TopNavigationActionElement => {
   return (
     <TopNavigation
       {...topNavigationProps}
-      style={{ ...style, ...props.style }}
+      style={{ ...style, ...props.style as {} }}
       alignment='center'
       accessoryLeft={onBackPress && renderBackAction}
       accessoryRight={menu && renderMenuAction}

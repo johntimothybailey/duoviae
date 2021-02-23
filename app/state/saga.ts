@@ -1,10 +1,11 @@
-import { all } from 'redux-saga/effects'
+import { all, put } from 'redux-saga/effects'
 
 /** ------------ Modules ----------- */
 import { makeSagas } from './modules'
 import { Api } from '../services/api'
 
 /* ------------- Types ------------- */
+export const GENERIC_ERROR = 'GENERIC_ERROR'
 /* ------------- Sagas ------------- */
 
 /* ------------- Connect Types To Sagas ------------- */
@@ -13,9 +14,13 @@ export interface CreateProps {
 }
 export const createRootSagas = (props: CreateProps) => {
   return function * root () {
-    yield all(
-      makeSagas(props.api)
-    )
+    try {
+      yield all(
+        makeSagas(props.api)
+      )
+    } catch (error) {
+      yield put({ type: GENERIC_ERROR, error })
+    }
   }
 }
 
