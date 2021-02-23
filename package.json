@@ -1,4 +1,5 @@
 {
+  "name": "duoviae",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -88,12 +89,17 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-redux-saga": "^1.2.1",
     "jest-expo": "^40.0.2",
+    "jest-websocket-mock": "^2.2.0",
+    "mock-socket": "^9.0.3",
     "prettier": "^2.2.1",
     "react-native-progress": "^4.1.2",
+    "reactotron-react-native": "^5.0.0",
+    "reactotron-redux": "^3.1.3",
+    "reactotron-redux-saga": "^4.2.3",
     "redux-immutable-state-invariant": "^2.1.0",
     "ts-jest": "^26.5.0",
     "ts-node": "^9.1.1",
-    "typescript": "~4.0.0"
+    "typescript": "^4.1.5"
   },
   "private": true
 }

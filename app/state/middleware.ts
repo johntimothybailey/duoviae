@@ -1,7 +1,7 @@
 import { applyMiddleware, StoreEnhancer } from 'redux'
 import createSagaMiddleware, { Task } from 'redux-saga'
 import ImmutableStateInvariant from 'redux-immutable-state-invariant'
-import { SagaMiddleware } from '@redux-saga/core'
+import { SagaMiddleware, SagaMonitor } from '@redux-saga/core'
 import values from 'lodash/values'
 
 export interface Middlewares {
@@ -20,10 +20,8 @@ const createDevMiddleware = (): DevMiddlewares => {
   }
 }
 
-export const createMiddleware = (): Middlewares => {
-  // Saga
-  // TODO: SagaMonitor with connect to Reactotron (or similar)
-  const sagaMiddleware = createSagaMiddleware()
+export const createMiddleware = (sagaMonitor: SagaMonitor | undefined): Middlewares => {
+  const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
 
   const productionMiddleware = {
     saga: sagaMiddleware

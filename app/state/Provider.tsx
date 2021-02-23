@@ -1,10 +1,11 @@
-import React, { PropsWithChildren, ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
+import { Store } from 'redux'
 import createStore from './createStore'
 import { Provider as ReduxProvider } from 'react-redux'
-import { RootState } from './index'
 import { Screen } from '../components'
 import { ActivityIndicator } from 'react-native'
 import { riverBackground } from '../../assets/images'
+import { ProviderProps } from './props'
 
 // TODO: https://docs.expo.io/versions/latest/sdk/app-loading/
 const Loading = (): ReactElement => {
@@ -19,13 +20,13 @@ const Loading = (): ReactElement => {
  * Following the best practice of only having one instance of Redux / one State Machine, I'm making it easy to simply use this Provider
  * @param props
  */
-const Provider = (props: PropsWithChildren<any>): ReactElement => {
-  const [store, setRootStore] = useState<RootState | undefined>(undefined)
+const Provider = (props: ProviderProps): ReactElement => {
+  const [store, setRootStore] = useState<Store | undefined>(undefined)
 
   useEffect(() => {
     // eslint-disable-next-line no-void
     void (async () => {
-      setRootStore(await createStore())
+      setRootStore(await createStore(props.inspection))
     })()
   }, [])
 
@@ -35,7 +36,7 @@ const Provider = (props: PropsWithChildren<any>): ReactElement => {
     )
   }
   return (
-    <ReduxProvider store={store as any}>
+    <ReduxProvider store={store}>
       {props.children}
     </ReduxProvider>
   )
