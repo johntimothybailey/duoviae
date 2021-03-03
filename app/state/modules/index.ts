@@ -9,7 +9,7 @@ import reduce from 'lodash/reduce'
 import Trivia, { State as TriviaState } from './quiz'
 import Answers, { State as AnswersState } from './answers'
 import Preferences, { State as PreferencesState } from './preferences'
-import Categories, { State as CategoriesState } from './preferences'
+import Categories, { State as CategoriesState } from './categories'
 import { Api } from '../../services/api'
 import { Dispatch } from 'redux'
 
