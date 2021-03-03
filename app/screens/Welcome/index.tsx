@@ -10,7 +10,7 @@ import { ActionTypes as Quiz } from '../../state/modules/quiz'
 import { State } from '../../state/modules/preferences'
 import { RootState } from '../../state'
 
-const Dashboard = (): ReactElement => {
+const Welcome = (): ReactElement => {
   // State
   const preferences: State = useSelector((state: RootState) => {
     return state.Preferences
@@ -23,7 +23,10 @@ const Dashboard = (): ReactElement => {
       dispatch({ type: Quiz.START })
       dispatch({ type: Quiz.GET_DATA, data: { amount: preferences.totalQuestions, type: preferences.answerType } })
     })
-    navigation.navigate('TriviaStack', { screen: 'Questions' })
+    navigation.navigate('Main', {
+      screen: 'Trivia',
+      params: { screen: 'Questions' }
+    })
   }
   // Translations
   const { t } = useTranslation('welcomeScreen')
@@ -45,4 +48,4 @@ const Dashboard = (): ReactElement => {
   )
 }
 
-export default Dashboard
+export default Welcome

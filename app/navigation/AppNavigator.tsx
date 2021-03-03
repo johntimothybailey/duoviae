@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { PreNavigator } from './PreNavigator'
-import TriviaNavigator from './TriviaNavigator'
+import { MainNavigator } from './MainNavigator'
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -15,8 +15,8 @@ export const AppNavigator = () => {
     <Navigator
       screenOptions={rootStackScreenOptions}
     >
-      <Screen name='ExternalStack' component={PreNavigator} />
-      <Screen name='TriviaStack' component={TriviaNavigator} />
+      <Screen name='External' component={PreNavigator} />
+      <Screen name='Main' component={MainNavigator} />
     </Navigator>
   )
 }

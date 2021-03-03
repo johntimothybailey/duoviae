@@ -43,7 +43,7 @@ export default function Results (): ReactElement {
       dispatch({ type: Quiz.START })
       dispatch({ type: Quiz.GET_DATA, data: { amount: preferences.totalQuestions, type: preferences.answerType } })
     })
-    navigation.navigate('TriviaStack', { screen: 'Questions' })
+    navigation.navigate('Trivia', { screen: 'Questions' })
   }
   return (
     <Screen background={questionsBackground} withAppBar title='Results'>
