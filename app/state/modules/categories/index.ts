@@ -1,14 +1,14 @@
 import { createRestSagas, createRestReducerHandlers, createRestActions } from '@delvefore/sagasauce'
-import { createActions, createReducer } from 'reduxsauce'
+import { createReducer } from 'reduxsauce'
 import Immutable, { ImmutableObject } from 'seamless-immutable'
 import { Api } from '../../../services/api'
-import { Question } from './Models'
+import { Category } from './Models'
 import { RestActionTypes } from '../RestActionTypes'
 import { Dispatch } from 'redux'
 
 /** ------------- Models (TypeScript Support) --------------- */
 export interface State {
-  data: Question[]
+  data: Category[]
   isPending: boolean
   errors: any
 }

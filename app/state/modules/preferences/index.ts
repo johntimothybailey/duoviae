@@ -2,12 +2,14 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 import { Dispatch } from 'redux'
 import { AnswerType } from '../../../services/api/trivia'
+import { Category } from '../categories/Models'
 
 /** ------------- Models (TypeScript Support) --------------- */
 export interface State {
   answerType: AnswerType
   difficulty: Array<['easy', 'medium', 'hard']>
   totalQuestions: number
+  category?: Category
 }
 
 const INITIAL_STATE = Immutable({
