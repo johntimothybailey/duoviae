@@ -7,8 +7,6 @@ import {
 } from '@ui-kitten/components'
 import { Route } from '@react-navigation/core'
 import { Props } from './props'
-import { View, ViewStyle } from 'react-native'
-import { Spacing } from '../../theme'
 import styles from './styles'
 
 /**
