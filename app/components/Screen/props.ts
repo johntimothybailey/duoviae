@@ -11,4 +11,5 @@ export interface ScreenProps {
   withAppBar?: boolean
   title?: string
   subtitle?: string
+  isLoading?: boolean
 }

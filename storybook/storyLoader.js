@@ -6,6 +6,7 @@ function loadStories () {
   require('../app/components/Answers/stories')
   require('../app/components/AppBar/stories')
   require('../app/components/BottomBar/stories')
+  require('../app/components/Screen/stories')
 }
 
 module.exports = {

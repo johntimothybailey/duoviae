@@ -3,7 +3,7 @@ import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context'
 import Container from '../Container'
 import { ScreenProps } from './props'
 import styles from './styles'
-import { useTheme } from '@ui-kitten/components'
+import { Spinner, useTheme } from '@ui-kitten/components'
 import { useNavigation } from '@react-navigation/native'
 import { Spacing } from '../../theme'
 import AppBar from '../AppBar'
@@ -74,8 +74,8 @@ const RegularScreen = (props: ScreenProps): ReactElement => {
  */
 const Screen = (props: ScreenProps): ReactElement => {
   const screenSelection = props.preset === 'splash'
-    ? (<SplashScreen {...props}>{props.children}</SplashScreen>)
-    : (<RegularScreen {...props}>{props.children}</RegularScreen>)
+    ? (<SplashScreen {...props}>{props.isLoading ? <Spinner size='giant' /> : props.children}</SplashScreen>)
+    : (<RegularScreen {...props}>{props.isLoading ? <Spinner size='giant' /> : props.children}</RegularScreen>)
   return props.background
     ? (
       <BackgroundImage background={props.background}>

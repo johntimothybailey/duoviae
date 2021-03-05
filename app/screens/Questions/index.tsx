@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Dispatch } from 'redux'
 import { Screen, Questions } from '../../components'
-import { Spinner } from '@ui-kitten/components'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../state'
 import { ActionTypes as AnswerActions } from '../../state/modules/answers'
@@ -37,12 +36,15 @@ export default function Trivia (): ReactElement {
   }
   const onNext = createNextHandler(dispatch, list, activeStep)
   return (
-    <Screen background={questionsBackground} preset='splash' withAppBar withBack title='Questions'>
-      {
-        isLoading
-          ? <Spinner size='giant' />
-          : <Questions step={activeStep} list={list} onSaveAnswer={onSaveAnswer} onNext={onNext} />
-      }
+    <Screen
+      isLoading={isLoading}
+      background={questionsBackground}
+      preset='splash'
+      withAppBar
+      withBack
+      title='Questions'
+    >
+      <Questions step={activeStep} list={list} onSaveAnswer={onSaveAnswer} onNext={onNext} />
     </Screen>
   )
 }
