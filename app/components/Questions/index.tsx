@@ -13,24 +13,28 @@ const Questions = (props: QuestionsProps): ReactElement => {
   const { t } = useTranslation('common')
   const noQuestionsString: string = t('noQuestions')
   //
-  let question: QuestionModel | undefined = props.list[props.step]
+  let question: QuestionModel | undefined = props.list.length > 0 ? props.list[props.step] : undefined
   useEffect(() => {
-    question = props.list[props.step]
+    question = props.list.length > 0 ? props.list[props.step] : undefined
   }, [props.list, props.step])
   return (
     <Container width='100%' space={Spacing.LARGE}>
       {question
-        ? (<Question
-            item={question}
-            index={props.step}
-            onSelect={(selection: string | undefined) => {
-              props.onSaveAnswer(question, selection as any)
-              props.onNext()
-            }}
-            continueLabel={t('continue')}
-           />)
+        ? (
+          <>
+            <Question
+              item={question}
+              index={props.step}
+              onSelect={(selection: string | undefined) => {
+                props.onSaveAnswer(question, selection as any)
+                props.onNext()
+              }}
+              continueLabel={t('continue')}
+            />
+            <Progress {...props} step={props.step} />
+          </>
+          )
         : <Text>{noQuestionsString}</Text>}
-      <Progress {...props} step={props.step} />
     </Container>
   )
 }
