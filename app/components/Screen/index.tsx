@@ -9,7 +9,7 @@ import { Spacing } from '../../theme'
 import AppBar from '../AppBar'
 import { ScrollView } from 'react-native-gesture-handler'
 import BackgroundImage from './BackgroundImage'
-import { View } from 'react-native'
+import { View, ViewStyle } from 'react-native'
 
 const onBackPress = (withBack: boolean | undefined) => {
   if (withBack) {
@@ -56,15 +56,50 @@ const RegularScreen = (props: ScreenProps): ReactElement => {
     style.backgroundColor = theme['background-basic-color-1']
   }
   return (
-    <ScrollView style={{ flex: 1, marginTop: Math.max(safeAreaInsets.top, Spacing.MEDIUM) }}>
+    <View style={{ flex: 1, backgroundColor: style.backgroundColor }}>
       <AppBar
+        style={{ marginTop: Math.max(safeAreaInsets.top, Spacing.MEDIUM) }}
         title={props.title} subtitle={props.subtitle} onBackPress={onBackPress(props.withBack)} transparent
       />
-      <Container height='100%' space='around' style={{ ...styles.Regular }}>
+      <ScrollView style={{ flex: 1, backgroundColor: style.backgroundColor }}>
+        <Container height='100%' space='around' style={{ ...styles.Regular }}>
+          {props.children}
+        </Container>
+      </ScrollView>
+    </View>
+  )
+}
+
+const ListScreen = (props: ScreenProps): ReactElement => {
+  const safeAreaInsets: EdgeInsets = useSafeAreaInsets()
+  const theme = useTheme()
+  const style: ViewStyle = { flex: 1 }
+  if (!props.background) {
+    style.backgroundColor = theme['background-basic-color-1']
+  }
+  return (
+    <View style={style}>
+      <AppBar
+        style={{ marginTop: Math.max(safeAreaInsets.top, Spacing.MEDIUM) }}
+        title={props.title} subtitle={props.subtitle} onBackPress={onBackPress(props.withBack)} transparent
+      />
+      <Container height='100%' space='around' style={{ ...styles.ListContent }}>
         {props.children}
       </Container>
-    </ScrollView>
+    </View>
   )
+}
+
+const getScreenBase = (props: ScreenProps): ReactElement => {
+  const content = props.isLoading ? <Spinner size='giant' /> : props.children
+  switch (props.preset) {
+    case 'splash':
+      return <SplashScreen {...props}>{content}</SplashScreen>
+    case 'list':
+      return <ListScreen {...props}>{content}</ListScreen>
+    default:
+      return <RegularScreen {...props}>{content}</RegularScreen>
+  }
 }
 
 /***
@@ -73,9 +108,7 @@ const RegularScreen = (props: ScreenProps): ReactElement => {
  * @constructor
  */
 const Screen = (props: ScreenProps): ReactElement => {
-  const screenSelection = props.preset === 'splash'
-    ? (<SplashScreen {...props}>{props.isLoading ? <Spinner size='giant' /> : props.children}</SplashScreen>)
-    : (<RegularScreen {...props}>{props.isLoading ? <Spinner size='giant' /> : props.children}</RegularScreen>)
+  const screenSelection: ReactElement = getScreenBase(props)
   return props.background
     ? (
       <BackgroundImage background={props.background}>
