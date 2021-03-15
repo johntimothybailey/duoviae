@@ -8,7 +8,7 @@ export interface ContainerProps {
    */
   flex?: number
 
-  children?: React.ReactNode | React.ReactNode[]
+  children: React.ReactNode | React.ReactNode[]
 
   style?: ViewStyle | ViewStyle[]
 
