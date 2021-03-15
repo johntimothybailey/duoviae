@@ -1,7 +1,6 @@
 {
-  "title": "Welcome to the Trivia Challenge",
-  "boolean": "You will be presented with {{numberOfQuestions}} True or False questions",
-  "multiple": "You will be presented with {{numberOfQuestions}} Multiple Choice questions",
+  "title": "Welcome to Duovaie",
+  "intro": "Select your question type, number of questions, difficulty, and more!",
   "goal": "Can you score 100%?",
-  "begin": "Begin"
+  "next": "Get Started"
 }

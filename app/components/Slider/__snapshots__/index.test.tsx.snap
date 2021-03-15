@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider Render style is set 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RNCSafeAreaProvider
+    onInsetsChange={[Function]}
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNCSlider
+      disabled={false}
+      enabled={true}
+      inverted={false}
+      maximumValue={1}
+      minimumTrackTintColor="#3366FF"
+      minimumValue={0}
+      onChange={null}
+      onRNCSliderSlidingComplete={null}
+      onRNCSliderSlidingStart={null}
+      onRNCSliderValueChange={null}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      step={0}
+      style={
+        Array [
+          Object {
+            "height": 40,
+          },
+          Object {
+            "width": 300,
+          },
+        ]
+      }
+      thumbImage={
+        Object {
+          "__packager_asset": true,
+          "height": 1,
+          "scale": 1,
+          "uri": "file://assets/full/path/to/directory/name.type",
+          "width": 1,
+        }
+      }
+      value={0}
+    />
+    <Text
+      appearance="default"
+      category="p1"
+      style={
+        Array [
+          Object {
+            "color": "#222B45",
+            "fontFamily": "System",
+            "fontSize": 15,
+            "fontWeight": "400",
+          },
+          Object {
+            "minWidth": 20,
+            "paddingLeft": 4,
+          },
+        ]
+      }
+    />
+  </RNCSafeAreaProvider>
+</View>
+`;

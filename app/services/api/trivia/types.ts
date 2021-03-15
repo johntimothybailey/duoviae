@@ -3,12 +3,6 @@ export type AnswerType = 'boolean' | 'multiple'
 
 export type Difficulty = 'easy' | 'medium' |'hard'
 
-export enum Category {
-  RANDOM,
-  GENERAL_KNOWLEDGE = 9,
-  SCIENCE_COMPUTERS = 18
-}
-
 export interface Boolean {
   category: string
   type: 'boolean'
@@ -32,5 +26,5 @@ export interface GetQueryParams {
   amount?: number
   difficulty?: 'easy' | 'medium' | 'hard'
   type?: AnswerType
-  category?: Category
+  category?: number
 }

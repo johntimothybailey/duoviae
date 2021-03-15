@@ -1,4 +1,4 @@
-import { ViewStyle, StyleSheet } from 'react-native'
+import { ViewStyle } from 'react-native'
 import { Spacing } from '../../theme'
 
 const SplashBase: ViewStyle = {
@@ -7,7 +7,13 @@ const SplashBase: ViewStyle = {
 }
 
 const RegularBase: ViewStyle = {
-  paddingHorizontal: Spacing.MEDIUM,
+  paddingHorizontal: Spacing.NONE,
+  paddingVertical: Spacing.SMALL
+}
+
+const ListContent: ViewStyle = {
+  flex: 1,
+  paddingHorizontal: Spacing.NONE,
   paddingVertical: Spacing.SMALL
 }
 
@@ -21,9 +27,10 @@ const BackgroundOverlay: ViewStyle = {
   backgroundColor: 'rgba(45,45,45,0.45)'
 }
 
-export default StyleSheet.create({
+export default {
   BackgroundOverlay: BackgroundOverlay,
   BackgroundFull: BackgroundImageFull,
   Splash: SplashBase,
-  Regular: RegularBase
-})
+  Regular: RegularBase,
+  ListContent: ListContent
+}

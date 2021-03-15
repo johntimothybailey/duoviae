@@ -7,6 +7,9 @@ import { FalseBoolean, MultipleChoice, TrueBoolean, ListOfQuestions } from '../.
 import { Question as QuestionModel } from '../../state/modules/quiz/Models'
 import Category from './Category'
 import { Layout } from '@ui-kitten/components'
+import Questions from './index'
+import { Spacing } from '../../theme'
+import { View } from 'react-native'
 
 declare let module: NodeModule
 
@@ -32,6 +35,18 @@ storiesOf('Question Progress', module)
       <Progress list={ListOfQuestions} step={1} onNext={onNext} onSaveAnswer={onSave} />
       <Progress list={ListOfQuestions} step={2} onNext={onNext} onSaveAnswer={onSave} />
     </>
+  ))
+
+storiesOf('Questions', module)
+  .add('empty list', () => (
+    <View style={{ backgroundColor: '#000', width: '100%', height: '100%', paddingHorizontal: Spacing.SMALLER }}>
+      <Questions onNext={onNext} onSaveAnswer={onSave} step={0} list={[]} />
+    </View>
+  ))
+  .add('populated list', () => (
+    <View style={{ backgroundColor: '#000', width: '100%', height: '100%', paddingHorizontal: Spacing.SMALLER }}>
+      <Questions onNext={onNext} onSaveAnswer={onSave} step={0} list={ListOfQuestions} />
+    </View>
   ))
 
 storiesOf('Question Category', module)

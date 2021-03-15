@@ -1,10 +1,13 @@
 {
   "extends": [
+    "plugin:testing-library/recommended",
+    "plugin:testing-library/react",
     "plugin:redux-saga/recommended",
     "standard-with-typescript",
     "standard-jsx"
   ],
   "plugins": [
+    "testing-library",
     "redux-saga"
   ],
   "parserOptions": {
