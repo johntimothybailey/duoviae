@@ -51,8 +51,8 @@ export const DoneAllIcon = (props: IconProps): IconElement => (
   <Icon {...props} name='done-all-outline' />
 )
 
-export const GridIcon = (props: IconProps): IconElement => (
-  <Icon {...props} name='grid-outline' />
+export const OptionsIcon = (props: IconProps): IconElement => (
+  <Icon {...props} name='options-outline' />
 )
 
 export const SearchIcon = (props: IconProps): IconElement => (
