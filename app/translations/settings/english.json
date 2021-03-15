@@ -1,8 +1,7 @@
 {
-  "continue": "Continue",
+  "heading": "Choose your style",
   "noQuestions": "No questions available",
   "questions": "Questions",
   "question": "Question",
-  "categories": "Categories",
-  "begin": "Begin"
+  "categories": "Categories"
 }

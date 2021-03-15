@@ -5,6 +5,7 @@ import { initReactI18next } from 'react-i18next'
 const resources = {
   en: {
     common: require('./common/english.json'),
+    settings: require('./settings/english.json'),
     welcomeScreen: require('./welcomeScreen/english.json')
   }
 }
@@ -13,7 +14,7 @@ const resources = {
 void i18n
   .use(initReactI18next)
   .init({
-    ns: ['welcomeScreen'],
+    ns: ['welcomeScreen', 'settings', 'common'],
     resources,
     lng: locale,
     debug: __DEV__,

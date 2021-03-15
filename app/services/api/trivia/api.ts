@@ -79,6 +79,9 @@ export class Api implements SagaSauceAPI, HydrogenAPI {
     }
     // transform the data into the format we are expecting
     try {
+      if (response.data[DATA_KEY].length === 0) {
+        return { ok: true, kind: 'ok', data: { data: [] } }
+      }
       const result: Question[] = response.data[DATA_KEY].map(mapEntity)
       return { ok: true, kind: 'ok', data: { data: result } }
     } catch (error) {

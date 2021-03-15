@@ -15,7 +15,12 @@ const createNextHandler = (dispatch: Dispatch, list: Question[], activeStep: num
     if (activeStep < list.length - 1) {
       dispatch({ type: Quiz.NEXT_STEP })
     } else {
-      navigation.navigate('Trivia', { screen: 'Results' })
+      navigation.navigate('Main', {
+        screen: 'Trivia',
+        params: {
+          screen: 'Results'
+        }
+      })
     }
   }
 }
